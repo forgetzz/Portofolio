@@ -1,103 +1,642 @@
-import Image from "next/image";
+"use client";
+import React, { useState, useEffect } from "react";
+import {
+  Github,
+  Linkedin,
+  Mail,
+  ExternalLink,
+  Code,
+  Database,
+  Globe,
+  Smartphone,
+  ChevronDown,
+  Menu,
+  X,
+  Eye,
+  Monitor,
+  LucideIcon,
+} from "lucide-react";
 
-export default function Home() {
+// Interface untuk project
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  technologies: string[];
+  githubUrl: string;
+  liveUrl: string;
+  category: string;
+}
+
+// Interface untuk skill
+interface Skill {
+  name: string;
+  level: number;
+  icon: LucideIcon;
+}
+
+// Interface untuk category
+interface Category {
+  id: string;
+  name: string;
+}
+
+const PortfolioLanding: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [activeSection, setActiveSection] = useState<string>("home");
+  const [isVisible, setIsVisible] = useState<Record<string, boolean>>({});
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [showIframe, setShowIframe] = useState<boolean>(false);
+
+  // Sample project data - replace with your actual projects
+  const projects: Project[] = [
+    {
+      id: 6,
+      title: "Decentralized FInance",
+      description:
+        "Aplikasi DeFi yang memungkinkan transaksi aman, transparan, dan otomatis dengan smart contract.",
+      image:
+        "LL.png",
+      technologies: ["React", "nextjs", "solidity", "typescript"],
+      githubUrl: "#",
+      liveUrl: "https://nekoswap.org", // Ganti dengan URL asli web Anda
+      category: "Defi",
+    },
+    {
+      id: 1,
+      title: "Marketplace Platform",
+      description:
+        "Full-stack web application dengan React, Node.js, dan MongoDB. Fitur lengkap dengan payment gateway dan admin dashboard.",
+      image:
+        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=250&fit=crop",
+      technologies: ["React", "Node.js", "MongoDB", "Express.js" , "Next.js"],
+      githubUrl: "#",
+      liveUrl: "https://ippang-motor.vercel.app", // Ganti dengan URL asli web Anda
+      category: "web",
+    },
+    {
+      id: 2,
+      title: "Mobile App",
+      description:
+        "Aplikasi mobile dengan React Native. UI/UX yang intuitif dengan fitur transfer, pembayaran, dan notifikasi real-time.",
+      image:
+        "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=250&fit=crop",
+      technologies: ["React Native", "Firebase", "Expo" , "SQL & NoSQL"],
+      githubUrl: "#",
+      liveUrl: "https://example-banking.com", // Ganti dengan URL asli web Anda
+      category: "mobile",
+    },
+    {
+      id: 3,
+      title: "Data Analytics Dashboard",
+      description:
+        "Dashboard analitik data dengan visualisasi interaktif menggunakan D3.js dan Python backend untuk data processing.",
+      image:
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
+      technologies: ["Nodejs", "D3.js", "PostgreSQL", "Nextjs"],
+      githubUrl: "#",
+      liveUrl: "https://barber-apk.vercel.app", // Ganti dengan URL asli web Anda
+      category: "data",
+    },
+    {
+      id: 4,
+      title: "AI Chatbot Integration",
+      description:
+        "Chatbot cerdas dengan NLP untuk customer service. Terintegrasi dengan website dan WhatsApp Business API.",
+      image:
+        "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=250&fit=crop",
+      technologies: ["Python", "TensorFlow", "FastAPI", "WhatsApp API"],
+      githubUrl: "#",
+      liveUrl: "https://example-chatbot.com", // Ganti dengan URL asli web Anda
+      category: "ai",
+    },
+    {
+      id: 5,
+      title: "Inventory Management System",
+      description:
+        "Sistem manajemen inventori dengan fitur real-time tracking, barcode scanning, dan laporan otomatis.",
+      image:
+        "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=250&fit=crop",
+      technologies: ["Vue.js", "Laravel", "MySQL", "Docker"],
+      githubUrl: "#",
+      liveUrl: "https://example-inventory.com", // Ganti dengan URL asli web Anda
+      category: "web",
+    },
+    
+  ];
+
+const skills: Skill[] = [
+  { name: "JavaScript/TypeScript", level: 95, icon: Code },
+  { name: "React/Next.js", level: 90, icon: Globe },
+  { name: "Node.js/Express", level: 85, icon: Database },
+  { name: "Solidity/SmartContract", level: 60, icon: Code },
+  { name: "React Native", level: 85, icon: Smartphone },
+  { name: "Database (SQL/NoSQL)", level: 88, icon: Database },
+];
+  const openProjectPreview = (project: Project): void => {
+    setSelectedProject(project);
+    setShowIframe(true);
+  };
+
+  const closeProjectPreview = (): void => {
+    setShowIframe(false);
+    setSelectedProject(null);
+  };
+
+  const [filter, setFilter] = useState<string>("all");
+  const categories: Category[] = [
+    { id: "all", name: "Semua" },
+    { id: "web", name: "Web App" },
+    { id: "mobile", name: "Mobile" },
+    { id: "data", name: "Data" },
+    { id: "ai", name: "AI/ML" },
+    { id: "iot", name: "IoT" },
+  ];
+
+  const filteredProjects: Project[] =
+    filter === "all"
+      ? projects
+      : projects.filter((project: Project) => project.category === filter);
+
+  useEffect(() => {
+    const handleScroll = (): void => {
+      const sections: string[] = [
+        "home",
+        "about",
+        "skills",
+        "projects",
+        "contact",
+      ];
+      const scrollPosition: number = window.scrollY + 100;
+
+      sections.forEach((section: string) => {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop: number = element.offsetTop;
+          const height: number = element.offsetHeight;
+
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + height
+          ) {
+            setActiveSection(section);
+          }
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId: string): void => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsMenuOpen(false);
+  };
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-gray-900 text-white">
+      {/* Iframe Modal */}
+      {showIframe && selectedProject && (
+        <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
+          <div className="bg-gray-800 rounded-xl w-full max-w-6xl h-5/6 flex flex-col">
+            <div className="flex items-center justify-between p-4 border-b border-gray-700">
+              <div className="flex items-center space-x-4">
+                <Monitor className="text-emerald-400" size={24} />
+                <div>
+                  <h3 className="text-xl font-semibold text-white">
+                    {selectedProject.title}
+                  </h3>
+                  <p className="text-sm text-gray-400">
+                    {selectedProject.liveUrl}
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={closeProjectPreview}
+                className="text-gray-400 hover:text-white p-2 rounded-lg hover:bg-gray-700 transition-colors"
+              >
+                <X size={24} />
+              </button>
+            </div>
+            <div className="flex-1 p-4">
+              <iframe
+                src={selectedProject.liveUrl}
+                className="w-full h-full rounded-lg border-2 border-gray-700"
+                title={selectedProject.title}
+                sandbox="allow-same-origin allow-scripts allow-forms allow-links"
+                loading="lazy"
+              />
+            </div>
+            <div className="p-4 border-t border-gray-700 flex justify-between items-center">
+              <div className="flex space-x-2">
+                {selectedProject.technologies.map(
+                  (tech: string, index: number) => (
+                    <span
+                      key={index}
+                      className="bg-gray-700 text-emerald-400 px-3 py-1 rounded-full text-xs"
+                    >
+                      {tech}
+                    </span>
+                  )
+                )}
+              </div>
+              <div className="flex space-x-2">
+                <a
+                  href={selectedProject.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors flex items-center space-x-2"
+                >
+                  <Github size={16} />
+                  <span>GitHub</span>
+                </a>
+                <a
+                  href={selectedProject.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-lg transition-colors flex items-center space-x-2"
+                >
+                  <ExternalLink size={16} />
+                  <span>Live Site</span>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      )}
+
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full bg-gray-900/95 backdrop-blur-sm border-b border-gray-800 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex-shrink-0">
+              <h1 className="text-xl font-bold bg-gradient-to-r from-red-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
+                Forgetzz
+              </h1>
+            </div>
+
+            <div className="hidden md:block">
+              <div className="ml-10 flex items-baseline space-x-4">
+                {(
+                  ["home", "about", "skills", "projects", "contact"] as const
+                ).map((item) => (
+                  <button
+                    key={item}
+                    onClick={() => scrollToSection(item)}
+                    className={`px-3 py-2 rounded-md text-sm font-medium capitalize transition-colors ${
+                      activeSection === item
+                        ? "bg-emerald-600 text-white"
+                        : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                    }`}
+                  >
+                    {item}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-gray-400 hover:text-white"
+              >
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile menu */}
+        {isMenuOpen && (
+          <div className="md:hidden">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-800">
+              {(
+                ["home", "about", "skills", "projects", "contact"] as const
+              ).map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item)}
+                  className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 rounded-md capitalize w-full text-left"
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </nav>
+
+      {/* Hero Section */}
+      <section
+        id="home"
+        className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 via-blue-900/20 to-emerald-900/20"></div>
+        <div className="max-w-4xl mx-auto text-center px-4 relative z-10">
+          <div className="animate-fade-in">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-red-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
+                Full Stack Developer
+              </span>
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+              Saya mengembangkan aplikasi web dan mobile yang modern, responsif,
+              dan user-friendly. Dengan pengalaman 3+ tahun dalam teknologi
+              terdepan.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <button
+                onClick={() => scrollToSection("projects")}
+                className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105"
+              >
+                Lihat Portfolio
+              </button>
+              <button
+                onClick={() => scrollToSection("contact")}
+                className="border-2 border-gray-400 hover:border-white px-8 py-3 rounded-lg font-semibold transition-all hover:bg-white hover:text-gray-900"
+              >
+                Hubungi Saya
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <ChevronDown size={32} className="text-gray-400" />
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-20 bg-gray-800">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-16">
+            <span className="bg-gradient-to-r from-red-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
+              Tentang Saya
+            </span>
+          </h2>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+         <div className="flex justify-center items-center">
+                  <img className="rounded-full  h-80 border-20 border-red-900" src="/forgetzz.jpeg" alt="" />
+
+         </div>
+   
+            <div>
+              <h3 className="text-2xl font-semibold mb-6 text-emerald-400">
+                Passionate Developer
+              </h3>
+              <p className="text-gray-300 mb-6 leading-relaxed">
+                Saya adalah seorang full stack developer dengan passion untuk
+                menciptakan solusi teknologi yang inovatif dan berdampak. Dengan
+                pengalaman lebih dari 3 tahun, saya telah mengembangkan berbagai
+                aplikasi web dan mobile untuk berbagai industri.
+              </p>
+              <p className="text-gray-300 mb-6 leading-relaxed">
+                Keahlian saya mencakup frontend development dengan
+                React/Next.js, backend dengan Node.js/Python, mobile development
+                dengan React Native, dan berbagai database serta cloud
+                technologies.
+              </p>
+              <div className="flex space-x-4">
+                <a
+                  href="#"
+                  className="text-emerald-400 hover:text-emerald-300 transition-colors"
+                >
+                  <Github size={24} />
+                </a>
+                <a
+                  href="#"
+                  className="text-blue-400 hover:text-blue-300 transition-colors"
+                >
+                  <Linkedin size={24} />
+                </a>
+                <a
+                  href="#"
+                  className="text-red-400 hover:text-red-300 transition-colors"
+                >
+                  <Mail size={24} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Skills Section */}
+      <section id="skills" className="py-20 bg-gray-900">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-16">
+            <span className="bg-gradient-to-r from-red-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
+              Skills & Technologies
+            </span>
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {skills.map((skill: Skill, index: number) => {
+              const IconComponent: LucideIcon = skill.icon;
+              return (
+                <div
+                  key={index}
+                  className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-emerald-500 transition-all"
+                >
+                  <div className="flex items-center mb-4">
+                    <IconComponent
+                      size={24}
+                      className="text-emerald-400 mr-3"
+                    />
+                    <h3 className="text-lg font-semibold">{skill.name}</h3>
+                  </div>
+                  <div className="w-full bg-gray-700 rounded-full h-3 mb-2">
+                    <div
+                      className="bg-gradient-to-r from-red-500 via-blue-500 to-emerald-500 h-3 rounded-full transition-all duration-1000"
+                      style={{ width: `${skill.level}%` }}
+                    ></div>
+                  </div>
+                  <span className="text-sm text-gray-400">{skill.level}%</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="py-20 bg-gray-800">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-8">
+            <span className="bg-gradient-to-r from-red-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
+              Portfolio Projects
+            </span>
+          </h2>
+          <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
+            Berikut adalah beberapa project yang telah saya kembangkan
+            menggunakan berbagai teknologi modern
+          </p>
+
+          {/* Filter Buttons */}
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            {categories.map((category: Category) => (
+              <button
+                key={category.id}
+                onClick={() => setFilter(category.id)}
+                className={`px-4 py-2 rounded-full transition-all ${
+                  filter === category.id
+                    ? "bg-emerald-600 text-white"
+                    : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                }`}
+              >
+                {category.name}
+              </button>
+            ))}
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredProjects.map((project: Project) => (
+              <div
+                key={project.id}
+                className="bg-gray-900 rounded-xl overflow-hidden border border-gray-700 hover:border-emerald-500 transition-all group"
+              >
+                <div className="relative overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="absolute bottom-4 right-4 flex space-x-2">
+                      <button
+                        onClick={() => openProjectPreview(project)}
+                        className="bg-red-600 p-2 rounded-full hover:bg-red-500 transition-colors"
+                        title="Preview Website"
+                      >
+                        <Eye size={16} />
+                      </button>
+                      <a
+                        href={project.githubUrl}
+                        className="bg-gray-800 p-2 rounded-full hover:bg-gray-700 transition-colors"
+                        title="View Code"
+                      >
+                        <Github size={16} />
+                      </a>
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-emerald-600 p-2 rounded-full hover:bg-emerald-500 transition-colors"
+                        title="Visit Site"
+                      >
+                        <ExternalLink size={16} />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">
+                    {project.title}
+                  </h3>
+                  <p className="text-gray-400 mb-4 text-sm leading-relaxed">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech: string, index: number) => (
+                      <span
+                        key={index}
+                        className="bg-gray-800 text-emerald-400 px-3 py-1 rounded-full text-xs"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 bg-gray-900">
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-8">
+            <span className="bg-gradient-to-r from-red-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
+              Mari Berkolaborasi
+            </span>
+          </h2>
+          <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
+            Tertarik untuk bekerja sama? Saya siap membantu mewujudkan ide
+            digital Anda menjadi kenyataan.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-12">
+            <div>
+              <h3 className="text-2xl font-semibold mb-6">Get In Touch</h3>
+              <div className="space-y-4">
+                <div className="flex items-center">
+                  <Mail className="text-red-400 mr-4" size={20} />
+                  <span className="text-gray-300"> forget.noxa90@gmail.com</span>
+                </div>
+                <div className="flex items-center">
+                  <Github className="text-emerald-400 mr-4" size={20} />
+                  <span className="text-gray-300">github.com/forgetzz</span>
+                </div>
+                {/* <div className="flex items-center">
+                  <Linkedin className="text-blue-400 mr-4" size={20} />
+                  <span className="text-gray-300">
+                    linkedin.com/in/yourprofile
+                  </span>
+                </div> */}
+              </div>
+            </div>
+
+            <div>
+              <div className="space-y-6">
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Nama Anda"
+                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:border-emerald-500 focus:outline-none transition-colors"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    placeholder="Email Anda"
+                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:border-emerald-500 focus:outline-none transition-colors"
+                  />
+                </div>
+                <div>
+                  <textarea
+                    placeholder="Pesan Anda"
+                    rows={4}
+                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:border-emerald-500 focus:outline-none transition-colors resize-none"
+                  ></textarea>
+                </div>
+                <button
+                  onClick={() =>
+                    alert("Fitur pengiriman pesan akan segera tersedia!")
+                  }
+                  className="w-full bg-gradient-to-r from-red-600 via-blue-600 to-emerald-600 hover:from-red-700 hover:via-blue-700 hover:to-emerald-700 py-3 rounded-lg font-semibold transition-all transform hover:scale-105"
+                >
+                  Kirim Pesan
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-800 border-t border-gray-700 py-8">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <p className="text-gray-400">
+            © 2024 Forgetzz Dibuat dengan ❤️ menggunakan React & Tailwind
+            CSS
+          </p>
+        </div>
       </footer>
     </div>
   );
-}
+};
+
+export default PortfolioLanding;
