@@ -389,7 +389,7 @@ const PortfolioLanding: React.FC = () => {
       {/* Hero Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center relative overflow-hidden pt-32"
+        className="min-h-screen flex items-center justify-center relative overflow-hidden pt-10"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 via-blue-900/20 to-emerald-900/20"></div>
         <div className="max-w-4xl mx-auto text-center px-4 relative z-10">
