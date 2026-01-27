@@ -16,7 +16,12 @@ import {
   Monitor,
   LucideIcon,
 } from "lucide-react";
-
+interface Service {
+  title: string;
+  description: string;
+  price: string;
+  features: string[];
+}
 // Interface untuk project
 interface Project {
   id: number;
@@ -70,7 +75,7 @@ const PortfolioLanding: React.FC = () => {
         "Full-stack web application dengan React, Node.js, dan MongoDB. Fitur lengkap dengan payment gateway dan admin dashboard.",
       image:
         "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=250&fit=crop",
-      technologies: ["React", "Node.js", "MongoDB", "Express.js" , "Next.js"],
+      technologies: ["React", "Node.js", "MongoDB", "Express.js", "Next.js"],
       githubUrl: "#",
       liveUrl: "https://ippang-motor.vercel.app", // Ganti dengan URL asli web Anda
       category: "web",
@@ -82,7 +87,7 @@ const PortfolioLanding: React.FC = () => {
         "Aplikasi mobile dengan React Native. UI/UX yang intuitif dengan fitur transfer, pembayaran, dan notifikasi real-time.",
       image:
         "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=250&fit=crop",
-      technologies: ["React Native", "Firebase", "Expo" , "SQL & NoSQL"],
+      technologies: ["React Native", "Firebase", "Expo", "SQL & NoSQL"],
       githubUrl: "#",
       liveUrl: "https://example-banking.com", // Ganti dengan URL asli web Anda
       category: "mobile",
@@ -123,17 +128,68 @@ const PortfolioLanding: React.FC = () => {
       liveUrl: "https://example-inventory.com", // Ganti dengan URL asli web Anda
       category: "web",
     },
-    
+
   ];
 
-const skills: Skill[] = [
-  { name: "JavaScript/TypeScript", level: 95, icon: Code },
-  { name: "React/Next.js", level: 90, icon: Globe },
-  { name: "Node.js/Express", level: 85, icon: Database },
-  { name: "Solidity/SmartContract", level: 60, icon: Code },
-  { name: "React Native", level: 85, icon: Smartphone },
-  { name: "Database (SQL/NoSQL)", level: 88, icon: Database },
-];
+
+
+
+  const services: Service[] = [
+    {
+      title: "Website Company Profile",
+      description: "Website profesional untuk bisnis & UMKM",
+      price: "Rp 2.500.000",
+      features: [
+        "Landing Page",
+        "Responsive Mobile",
+        "Free Hosting 1 Bulan",
+        "Free Domain setahun"
+      ]
+    },
+    {
+      title: "Web Application",
+      description: "Sistem berbasis web (dashboard, marketplace, dll)",
+      price: "Rp 5.000.000",
+      features: [
+        "Login & Register",
+        "Dashboard Admin",
+        "Database",
+        "API Integration"
+      ]
+    },
+    {
+      title: "Mobile App (APK)",
+      description: "Aplikasi Android dengan React Native / Flutter",
+      price: "Rp 7.000.000",
+      features: [
+        "UI/UX Modern",
+        "Firebase / Backend",
+        "Push Notification",
+        "Build APK"
+      ]
+    },
+    {
+      title: "Custom Web & App",
+      description: "Aplikasi Android dengan React Native / Flutter",
+      price: "Mulai dari 5.000.000",
+      features: [
+        "Custom Fitur",
+        "UI/UX Modern",
+        "Firebase / Backend",
+        "Push Notification",
+      ]
+    }
+  ];
+
+
+  const skills: Skill[] = [
+    { name: "JavaScript/TypeScript", level: 95, icon: Code },
+    { name: "React/Next.js", level: 90, icon: Globe },
+    { name: "Node.js/Express", level: 85, icon: Database },
+    { name: "Solidity/SmartContract", level: 60, icon: Code },
+    { name: "React Native", level: 85, icon: Smartphone },
+    { name: "Database (SQL/NoSQL)", level: 88, icon: Database },
+  ];
   const openProjectPreview = (project: Project): void => {
     setSelectedProject(project);
     setShowIframe(true);
@@ -276,23 +332,22 @@ const skills: Skill[] = [
           <div className="flex items-center justify-between h-16">
             <div className="flex-shrink-0">
               <h1 className="text-xl font-bold bg-gradient-to-r from-red-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
-                Forgetzz
+                ForgetzzStudio
               </h1>
             </div>
 
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
                 {(
-                  ["home", "about", "skills", "projects", "contact"] as const
+                  ["home", "about", "skills", "services", "projects", "contact"] as const
                 ).map((item) => (
                   <button
                     key={item}
                     onClick={() => scrollToSection(item)}
-                    className={`px-3 py-2 rounded-md text-sm font-medium capitalize transition-colors ${
-                      activeSection === item
-                        ? "bg-emerald-600 text-white"
-                        : "text-gray-300 hover:bg-gray-700 hover:text-white"
-                    }`}
+                    className={`px-3 py-2 rounded-md text-sm font-medium capitalize transition-colors ${activeSection === item
+                      ? "bg-emerald-600 text-white"
+                      : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                      }`}
                   >
                     {item}
                   </button>
@@ -334,27 +389,27 @@ const skills: Skill[] = [
       {/* Hero Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center relative overflow-hidden"
+        className="min-h-screen flex items-center justify-center relative overflow-hidden pt-32"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 via-blue-900/20 to-emerald-900/20"></div>
         <div className="max-w-4xl mx-auto text-center px-4 relative z-10">
           <div className="animate-fade-in">
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
               <span className="bg-gradient-to-r from-red-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
-                Full Stack Developer
+                Web & Mobile App Development
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              Saya mengembangkan aplikasi web dan mobile yang modern, responsif,
-              dan user-friendly. Dengan pengalaman 3+ tahun dalam teknologi
-              terdepan.
+              Kami menyediakan jasa pembuatan website, web app, dan aplikasi mobile (APK)
+              untuk bisnis, startup, dan UMKM dengan desain modern dan performa optimal.
+
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <button
-                onClick={() => scrollToSection("projects")}
+                onClick={() => scrollToSection("services")}
                 className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105"
               >
-                Lihat Portfolio
+                Lihat Layanan
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
@@ -379,11 +434,11 @@ const skills: Skill[] = [
             </span>
           </h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
-         <div className="flex justify-center items-center">
-                  <img className="rounded-full  h-80 border-20 border-red-900" src="/forgetzz.jpeg" alt="" />
+            <div className="flex justify-center items-center">
+              <img className="rounded-full  h-80 border-20 border-red-900" src="/forgetzz.jpeg" alt="" />
 
-         </div>
-   
+            </div>
+
             <div>
               <h3 className="text-2xl font-semibold mb-6 text-emerald-400">
                 Passionate Developer
@@ -391,12 +446,12 @@ const skills: Skill[] = [
               <p className="text-gray-300 mb-6 leading-relaxed">
                 Saya adalah seorang full stack developer dengan passion untuk
                 menciptakan solusi teknologi yang inovatif dan berdampak. Dengan
-                pengalaman lebih dari 3 tahun, saya telah mengembangkan berbagai
+                pengalaman lebih dari 5 tahun, saya telah mengembangkan berbagai
                 aplikasi web dan mobile untuk berbagai industri.
               </p>
               <p className="text-gray-300 mb-6 leading-relaxed">
                 Keahlian saya mencakup frontend development dengan
-                React/Next.js, backend dengan Node.js/Python, mobile development
+                React/Next.js, backend dengan Node.js, mobile development
                 dengan React Native, dan berbagai database serta cloud
                 technologies.
               </p>
@@ -460,7 +515,56 @@ const skills: Skill[] = [
           </div>
         </div>
       </section>
+      <section id="services" className="py-20 bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4">
 
+          <h2 className="text-4xl font-bold text-center mb-12">
+            <span className="bg-gradient-to-r from-red-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
+              Service
+            </span>
+          </h2>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-emerald-500 transition"
+              >
+                <h3 className="text-xl font-semibold mb-2">
+                  {service.title}
+                </h3>
+
+                <p className="text-gray-400 mb-4">
+                  {service.description}
+                </p>
+
+                <p className="text-2xl font-bold text-emerald-400 mb-4">
+                  {service.price}
+                </p>
+
+                <ul className="space-y-2 mb-6">
+                  {service.features.map((f, i) => (
+                    <li key={i} className="text-gray-300 text-sm">
+                      ✅ {f}
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href="https://wa.me/6289602203266"
+                  target="_blank"
+                  className="block text-center bg-emerald-600 hover:bg-emerald-500 py-2 rounded-lg font-semibold"
+                >
+                  Pesan Sekarang
+                </a>
+              </div>
+            ))}
+
+          </div>
+
+        </div>
+      </section>
       {/* Projects Section */}
       <section id="projects" className="py-20 bg-gray-800">
         <div className="max-w-7xl mx-auto px-4">
@@ -474,17 +578,17 @@ const skills: Skill[] = [
             menggunakan berbagai teknologi modern
           </p>
 
+
           {/* Filter Buttons */}
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             {categories.map((category: Category) => (
               <button
                 key={category.id}
                 onClick={() => setFilter(category.id)}
-                className={`px-4 py-2 rounded-full transition-all ${
-                  filter === category.id
-                    ? "bg-emerald-600 text-white"
-                    : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                }`}
+                className={`px-4 py-2 rounded-full transition-all ${filter === category.id
+                  ? "bg-emerald-600 text-white"
+                  : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                  }`}
               >
                 {category.name}
               </button>
@@ -554,6 +658,8 @@ const skills: Skill[] = [
           </div>
         </div>
       </section>
+      {/* Services Section */}
+
 
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-gray-900">
