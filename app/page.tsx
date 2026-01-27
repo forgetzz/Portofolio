@@ -16,6 +16,7 @@ import {
   Monitor,
   LucideIcon,
 } from "lucide-react";
+import { link } from "fs";
 interface Service {
   title: string;
   description: string;
@@ -250,21 +251,30 @@ const PortfolioLanding: React.FC = () => {
     {
       name: "PT AAP",
       logo: "/logos/aa.png",
+      link: "https://www.aapserviceac.com/"
     },
 
+    // {
+    //   name: "Tonasa Company",
+    //   logo: "/logos/tonasa.png",
+    //   link: ""
+    // },
     {
       name: "Tonasa Company",
-      logo: "/logos/tonasa.png",
+      logo: "/logos/logoasb.png",
+      link: "https://asbfamilyy.vercel.app/"
     },
 
     {
       name: "PT BDMI",
       logo: "/logos/bdmi.png",
+      link: "https://loadermakassar.id/"
     },
- 
+
     {
       name: "Klinik Medica",
       logo: "/logos/medica.png",
+      link: "https://klinikmedica.github.io/"
     },
   ];
 
@@ -552,11 +562,15 @@ const PortfolioLanding: React.FC = () => {
                 key={index}
                 className="flex justify-center items-center"
               >
-                <img
-                  src={company.logo}
-                  alt={company.name}
-                  className="h-30 object-contain"
-                />
+                <a target="_blank"  href={
+                  company.link}>
+                  <img
+                    src={company.logo}
+                    alt={company.name}
+                    className="h-30 object-contain"
+                  />
+                </a>
+
               </div>
             ))}
 
