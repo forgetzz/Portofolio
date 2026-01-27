@@ -47,6 +47,13 @@ interface Category {
   name: string;
 }
 
+interface Testimonial {
+  name: string;
+  role: string;
+  message: string;
+  rating: number;
+}
+
 const PortfolioLanding: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [activeSection, setActiveSection] = useState<string>("home");
@@ -210,20 +217,61 @@ const PortfolioLanding: React.FC = () => {
     { id: "iot", name: "IoT" },
   ];
 
+  const testimonials: Testimonial[] = [
+    {
+      name: "Drg Fatmawati",
+      role: "Owner Klinik Medica",
+      message:
+        "Website dari ForgetStudio sangat profesional dan cepat. Penjualan saya meningkat drastis.",
+      rating: 5,
+    },
+    {
+      name: "Muh Rafly ",
+      role: "UMKM Parfum",
+      message:
+        "Pelayanan ramah, revisi cepat, hasil sesuai keinginan. Sangat direkomendasikan!",
+      rating: 5,
+    },
+    {
+      name: "PT ASB",
+      role: "Startup Founder",
+      message:
+        "Aplikasi mobile berjalan lancar dan stabil. Tim ForgetStudio sangat komunikatif.",
+      rating: 4,
+    },
+  ];
+
   const filteredProjects: Project[] =
     filter === "all"
       ? projects
       : projects.filter((project: Project) => project.category === filter);
+  const trustedCompanies = [
+
+    {
+      name: "PT AAP",
+      logo: "/logos/aa.png",
+    },
+
+    {
+      name: "Tonasa Company",
+      logo: "/logos/tonasa.png",
+    },
+
+    {
+      name: "PT BDMI",
+      logo: "/logos/bdmi.png",
+    },
+ 
+    {
+      name: "Klinik Medica",
+      logo: "/logos/medica.png",
+    },
+  ];
 
   useEffect(() => {
     const handleScroll = (): void => {
-      const sections: string[] = [
-        "home",
-        "about",
-        "skills",
-        "projects",
-        "contact",
-      ];
+      const sections: string[] = ["home", "about", "skills", "services", "projects", "testimonials", "contact"]
+        ;
       const scrollPosition: number = window.scrollY + 100;
 
       sections.forEach((section: string) => {
@@ -255,7 +303,7 @@ const PortfolioLanding: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen  text-white">
       {/* Iframe Modal */}
       {showIframe && selectedProject && (
         <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
@@ -327,11 +375,11 @@ const PortfolioLanding: React.FC = () => {
       )}
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-gray-900/95 backdrop-blur-sm border-b border-gray-800 z-50">
+      <nav className="fixed top-0 w-full  backdrop-blur-sm border-b border-gray-800 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex-shrink-0">
-              <h1 className="text-xl font-bold bg-gradient-to-r from-red-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
+              <h1 className="text-xl font-bold text-black">
                 ForgetzzStudio
               </h1>
             </div>
@@ -345,8 +393,8 @@ const PortfolioLanding: React.FC = () => {
                     key={item}
                     onClick={() => scrollToSection(item)}
                     className={`px-3 py-2 rounded-md text-sm font-medium capitalize transition-colors ${activeSection === item
-                      ? "bg-emerald-600 text-white"
-                      : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                      ? "bg-emerald-600 text-black"
+                      : "text-black hover:bg-gray-700 hover:text-white"
                       }`}
                   >
                     {item}
@@ -391,15 +439,15 @@ const PortfolioLanding: React.FC = () => {
         id="home"
         className="min-h-screen flex items-center justify-center relative overflow-hidden pt-10"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 via-blue-900/20 to-emerald-900/20"></div>
+        <div className="absolute inset-0 bg-white text-black"></div>
         <div className="max-w-4xl mx-auto text-center px-4 relative z-10">
           <div className="animate-fade-in">
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-red-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
+              <span className="text-black">
                 Web & Mobile App Development
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-black mb-8 max-w-3xl mx-auto">
               Kami menyediakan jasa pembuatan website, web app, dan aplikasi mobile (APK)
               untuk bisnis, startup, dan UMKM dengan desain modern dan performa optimal.
 
@@ -413,9 +461,14 @@ const PortfolioLanding: React.FC = () => {
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
-                className="border-2 border-gray-400 hover:border-white px-8 py-3 rounded-lg font-semibold transition-all hover:bg-white hover:text-gray-900"
+                className="border-2 text-black border-gray-400 hover:border-white px-8 py-3 rounded-lg font-semibold transition-all hover:bg-white hover:text-gray-900"
               >
-                Hubungi Saya
+                <a
+                  href="https://wa.me/6289602203266"
+                  target="_blank"
+
+                > Hubungi Kami</a>
+
               </button>
             </div>
           </div>
@@ -426,31 +479,31 @@ const PortfolioLanding: React.FC = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-gray-800">
+      <section id="about" className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-16">
-            <span className="bg-gradient-to-r from-red-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
-              Tentang Saya
+            <span className="text-black">
+              Tentang Kami
             </span>
           </h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="flex justify-center items-center">
-              <img className="rounded-full  h-80 border-20 border-red-900" src="/forgetzz.jpeg" alt="" />
+              <img className="rounded-full  h-80 border-5 border-black" src="/log.png" alt="" />
 
             </div>
 
             <div>
-              <h3 className="text-2xl font-semibold mb-6 text-emerald-400">
+              <h3 className="text-2xl font-semibold mb-6 text-black">
                 Passionate Developer
               </h3>
-              <p className="text-gray-300 mb-6 leading-relaxed">
-                Saya adalah seorang full stack developer dengan passion untuk
+              <p className="text-black mb-6 leading-relaxed">
+                Kami adalah seorang full stack developer dengan passion untuk
                 menciptakan solusi teknologi yang inovatif dan berdampak. Dengan
-                pengalaman lebih dari 5 tahun, saya telah mengembangkan berbagai
+                pengalaman lebih dari 5 tahun, Kami telah mengembangkan berbagai
                 aplikasi web dan mobile untuk berbagai industri.
               </p>
-              <p className="text-gray-300 mb-6 leading-relaxed">
-                Keahlian saya mencakup frontend development dengan
+              <p className="text-black mb-6 leading-relaxed">
+                Keahlian Kami mencakup frontend development dengan
                 React/Next.js, backend dengan Node.js, mobile development
                 dengan React Native, dan berbagai database serta cloud
                 technologies.
@@ -479,11 +532,47 @@ const PortfolioLanding: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Trusted Companies Section */}
+      <section id="trusted" className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+
+          <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">
+            Perusahaan Kepercayaan Kami
+          </h2>
+
+          <p className="text-center text-gray-600 mb-12">
+            Beberapa perusahaan & brand yang telah bekerja sama dengan ForgetStudio
+          </p>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+
+            {trustedCompanies.map((company, index) => (
+              <div
+                key={index}
+                className="flex justify-center items-center"
+              >
+                <img
+                  src={company.logo}
+                  alt={company.name}
+                  className="h-30 object-contain"
+                />
+              </div>
+            ))}
+
+          </div>
+
+        </div>
+      </section>
+
+
+
+
       {/* Skills Section */}
-      <section id="skills" className="py-20 bg-gray-900">
+      <section id="skills" className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-16">
-            <span className="bg-gradient-to-r from-red-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
+            <span className="text-black">
               Skills & Technologies
             </span>
           </h2>
@@ -515,11 +604,11 @@ const PortfolioLanding: React.FC = () => {
           </div>
         </div>
       </section>
-      <section id="services" className="py-20 bg-gray-900">
+      <section id="services" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
 
           <h2 className="text-4xl font-bold text-center mb-12">
-            <span className="bg-gradient-to-r from-red-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
+            <span className="text-black">
               Service
             </span>
           </h2>
@@ -566,14 +655,14 @@ const PortfolioLanding: React.FC = () => {
         </div>
       </section>
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-gray-800">
+      <section id="projects" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-8">
-            <span className="bg-gradient-to-r from-red-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
+            <span className="text-black">
               Portfolio Projects
             </span>
           </h2>
-          <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
+          <p className="text-center text-gray-900 mb-12 max-w-2xl mx-auto">
             Berikut adalah beberapa project yang telah saya kembangkan
             menggunakan berbagai teknologi modern
           </p>
@@ -659,6 +748,46 @@ const PortfolioLanding: React.FC = () => {
         </div>
       </section>
       {/* Services Section */}
+      {/* Testimonials Section */}
+      <section id="testimonials" className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+
+          <h2 className="text-4xl font-bold text-center mb-12">
+            <span className="text-black">
+              Apa Kata Klien
+            </span>
+          </h2>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            {testimonials.map((item, index) => (
+              <div
+                key={index}
+                className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-emerald-500 transition"
+              >
+
+                <div className="flex mb-3">
+                  {[...Array(item.rating)].map((_, i) => (
+                    <span key={i} className="text-yellow-400 text-lg">★</span>
+                  ))}
+                </div>
+
+                <p className="text-gray-300 italic mb-4">
+                  "{item.message}"
+                </p>
+
+                <div>
+                  <h4 className="font-semibold text-white">{item.name}</h4>
+                  <p className="text-sm text-gray-400">{item.role}</p>
+                </div>
+
+              </div>
+            ))}
+
+          </div>
+
+        </div>
+      </section>
 
 
       {/* Contact Section */}
@@ -732,11 +861,12 @@ const PortfolioLanding: React.FC = () => {
         </div>
       </section>
 
+
       {/* Footer */}
       <footer className="bg-gray-800 border-t border-gray-700 py-8">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <p className="text-gray-400">
-            © 2024 Forgetzz Dibuat dengan ❤️ menggunakan React & Tailwind
+            © 2024 ForgetzzStudio Dibuat dengan ❤️ menggunakan React & Tailwind
             CSS
           </p>
         </div>
