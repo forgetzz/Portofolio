@@ -17,6 +17,7 @@ import {
   LucideIcon,
 } from "lucide-react";
 import { link } from "fs";
+import { trackEvent } from "@/lib/gtag";
 interface Service {
   title: string;
   description: string;
@@ -445,62 +446,62 @@ const PortfolioLanding: React.FC = () => {
       </nav>
 
       {/* Hero Section */}
-  <section
-  id="home"
-  className="min-h-screen flex items-center justify-center relative overflow-hidden pt-10"
->
-  {/* Video Background */}
-  <video
-    autoPlay
-    loop
-    muted
-    playsInline
-    className="absolute inset-0 w-full h-full object-cover"
-  >
-    <source src="/bg.mp4" type="video/mp4" />
-  </video>
-
-  {/* Overlay agar teks terbaca */}
-  <div className="absolute inset-0 bg-white/70"></div>
-
-  {/* Content */}
-  <div className="max-w-4xl mx-auto text-center px-4 relative z-10">
-    <div className="animate-fade-in">
-      <h1 className="text-5xl md:text-7xl font-bold mb-6">
-        <span className="text-black">
-          Web & Mobile App Development
-        </span>
-      </h1>
-
-      <p className="text-xl md:text-2xl text-black mb-8 max-w-3xl mx-auto">
-        Kami menyediakan jasa pembuatan website, web app, dan aplikasi mobile (APK)
-        untuk bisnis, startup, dan UMKM dengan desain modern dan performa optimal.
-      </p>
-
-      <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <button
-          onClick={() => scrollToSection("services")}
-          className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105"
+      <section
+        id="home"
+        className="min-h-screen flex items-center justify-center relative overflow-hidden pt-10"
+      >
+        {/* Video Background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
         >
-          Lihat Layanan
-        </button>
+          <source src="/bg.mp4" type="video/mp4" />
+        </video>
 
-        <a
-          href="https://wa.me/6289602203266"
-          target="_blank"
-          className="border-2 text-black border-gray-400 hover:border-white px-8 py-3 rounded-lg font-semibold transition-all hover:bg-white hover:text-gray-900"
-        >
-          Hubungi Kami
-        </a>
-      </div>
-    </div>
-  </div>
+        {/* Overlay agar teks terbaca */}
+        <div className="absolute inset-0 bg-white/70"></div>
 
-  {/* Icon scroll */}
-  <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
-    <ChevronDown size={32} className="text-gray-500" />
-  </div>
-</section>
+        {/* Content */}
+        <div className="max-w-4xl mx-auto text-center px-4 relative z-10">
+          <div className="animate-fade-in">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+              <span className="text-black">
+                Web & Mobile App Development
+              </span>
+            </h1>
+
+            <p className="text-xl md:text-2xl text-black mb-8 max-w-3xl mx-auto">
+              Kami menyediakan jasa pembuatan website, web app, dan aplikasi mobile (APK)
+              untuk bisnis, startup, dan UMKM dengan desain modern dan performa optimal.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <button
+                onClick={() => scrollToSection("services")}
+                className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105"
+              >
+                Lihat Layanan
+              </button>
+
+              <a
+                href="https://wa.me/6289602203266"
+                target="_blank"
+                className="border-2 text-black border-gray-400 hover:border-white px-8 py-3 rounded-lg font-semibold transition-all hover:bg-white hover:text-gray-900"
+              >
+                Hubungi Kami
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Icon scroll */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
+          <ChevronDown size={32} className="text-gray-500" />
+        </div>
+      </section>
 
 
       {/* About Section */}
@@ -577,7 +578,7 @@ const PortfolioLanding: React.FC = () => {
                 key={index}
                 className="flex justify-center items-center"
               >
-                <a target="_blank"  href={
+                <a target="_blank" href={
                   company.link}>
                   <img
                     src={company.logo}
@@ -672,10 +673,12 @@ const PortfolioLanding: React.FC = () => {
                 <a
                   href="https://wa.me/6289602203266"
                   target="_blank"
+                  onClick={() => trackEvent("generate_lead", { method: "whatsapp" })}
                   className="block text-center bg-emerald-600 hover:bg-emerald-500 py-2 rounded-lg font-semibold"
                 >
                   Pesan Sekarang
                 </a>
+
               </div>
             ))}
 
