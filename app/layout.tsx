@@ -14,11 +14,14 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Forgetzz",
-  description: "Portofolio programer ",
+  description: "Portofolio programer",
   icons: {
-    icon: "/log.png",
+    icon: [
+      { url: "/log.png", sizes: "32x32", type: "image/png" },
+    ],
   },
 };
+
 
 export default function RootLayout({
   children,
