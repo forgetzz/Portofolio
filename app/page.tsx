@@ -179,7 +179,7 @@ const PortfolioLanding: React.FC = () => {
     {
       title: "Custom Web & App",
       description: "Aplikasi Android dengan React Native / Flutter",
-      price: "Mulai dari 5.000.000",
+      price: "Mulai dari Rp 5.000.000",
       features: [
         "Custom Fitur",
         "UI/UX Modern",
