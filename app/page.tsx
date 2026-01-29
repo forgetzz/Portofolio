@@ -390,7 +390,7 @@ const PortfolioLanding: React.FC = () => {
           <div className="flex items-center justify-between h-16">
             <div className="flex-shrink-0">
               <h1 className="text-xl font-bold text-black">
-                ForgetzzStudio
+                ForgetzStudio
               </h1>
             </div>
 
