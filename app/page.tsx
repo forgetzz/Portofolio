@@ -469,9 +469,10 @@ const PortfolioLanding: React.FC = () => {
           <div className="animate-fade-in">
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
               <span className="text-black">
-                Web & Mobile App Development
+                Jasa Pembuatan Website & Aplikasi Mobile
               </span>
             </h1>
+
 
             <p className="text-xl md:text-2xl text-black mb-8 max-w-3xl mx-auto">
               Kami menyediakan jasa pembuatan website, web app, dan aplikasi mobile (APK)
@@ -595,9 +596,6 @@ const PortfolioLanding: React.FC = () => {
         </div>
       </section>
 
-
-
-
       {/* Skills Section */}
       <section id="skills" className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4">
@@ -639,9 +637,10 @@ const PortfolioLanding: React.FC = () => {
 
           <h2 className="text-4xl font-bold text-center mb-12">
             <span className="text-black">
-              Service
+              Layanan Jasa Pembuatan Website & Aplikasi
             </span>
           </h2>
+
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
