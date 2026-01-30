@@ -13,12 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Forgetzz",
-  description: "Portofolio programer",
+  title: "Jasa Pembuatan Website & Aplikasi | Forgetz Studio",
+  description:
+    "Forgetz Studio menyediakan jasa pembuatan website, web app, dan aplikasi mobile (APK) untuk UMKM, bisnis, dan startup dengan desain modern dan performa optimal.",
   icons: {
-    icon: [
-      { url: "/log.png", sizes: "32x32", type: "image/png" },
-    ],
+    icon: [{ url: "/log.png", sizes: "32x32", type: "image/png" }],
   },
 };
 
