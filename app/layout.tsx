@@ -30,6 +30,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Forgetz Studio",
+              url: "https://forgetzstudio.com",
+              description:
+                "Jasa pembuatan website dan aplikasi mobile untuk UMKM dan bisnis.",
+            }),
+          }}
+        />
         <meta name="google-site-verification" content="LN9hJ5C42mL1VE43xZ4VX6texAncDHTsmkXDZ4rwKqc" />
       </head>
       <body
@@ -49,6 +62,7 @@ export default function RootLayout({
         gtag('config', 'G-PGNE6HJ7S9');
       `}
         </Script>
+
       </body>
     </html>
   );
