@@ -68,11 +68,10 @@ const PortfolioLanding: React.FC = () => {
 
     {
       id: 1,
-      title: "ASB family",
+      title: "ASB Family",
       description:
-        "Full-stack web application built with React, Node.js, and firebase. Complete features including payment gateway and admin dashboard.",
-      image:
-        "/projects/1.png",
+        "Aplikasi web full-stack yang dibangun menggunakan React, Node.js, dan Firebase. Memiliki fitur lengkap termasuk payment gateway dan dashboard admin.",
+      image: "/projects/1.png",
       technologies: ["React", "Node.js", "MongoDB", "Express.js", "Next.js"],
       githubUrl: "#",
       liveUrl: "https://play.google.com/store/apps/details?id=com.forgetzz.asbapps&hl=id",
@@ -80,11 +79,10 @@ const PortfolioLanding: React.FC = () => {
     },
     {
       id: 2,
-      title: "Asbgo",
+      title: "ASBGO",
       description:
-        "Mobile application built with React Native (expo). Intuitive UI/UX with transfer, payment, and real-time notification features.",
-      image:
-        "/projects/2.png",
+        "Aplikasi mobile yang dibangun menggunakan React Native (Expo) dengan UI/UX intuitif, fitur transfer, pembayaran, dan notifikasi real-time.",
+      image: "/projects/2.png",
       technologies: ["React Native", "Firebase", "Expo", "NoSQL"],
       githubUrl: "#",
       liveUrl: "https://play.google.com/store/apps/details?id=com.forgetzz.asbgo&hl=id",
@@ -92,12 +90,10 @@ const PortfolioLanding: React.FC = () => {
     },
     {
       id: 3,
-      title: "Roket store",
+      title: "Roket Store",
       description:
-        "Mobile application for buying and selling game chips, featuring secure transactions, user-friendly interface, and real-time order processing.",
-
-      image:
-        "/projects/3.png",
+        "Aplikasi mobile untuk jual beli chip game dengan transaksi aman, antarmuka ramah pengguna, dan pemrosesan pesanan secara real-time.",
+      image: "/projects/3.png",
       technologies: ["Node.js", "React-native(expo)", "firebase", "NoSql"],
       githubUrl: "#",
       liveUrl: "https://play.google.com/store/apps/details?id=com.zerogic.RoketStore&hl=id",
@@ -105,12 +101,10 @@ const PortfolioLanding: React.FC = () => {
     },
     {
       id: 4,
-      title: "ASB family web (Multilevel marketing)",
+      title: "ASB Family Web (Multilevel Marketing)",
       description:
-        "MLM platform featuring user registration, referral tracking, member dashboard, and network management system.",
-
-      image:
-        "/projects/5.png",
+        "Platform MLM dengan fitur pendaftaran pengguna, sistem referral, dashboard member, dan manajemen jaringan.",
+      image: "/projects/5.png",
       technologies: ["next.js", "firebase", "node.js", "express.js", "NoSql"],
       githubUrl: "#",
       liveUrl: "https://asbfamilyy.vercel.app/",
@@ -120,10 +114,8 @@ const PortfolioLanding: React.FC = () => {
       id: 5,
       title: "Big Dipper Machinery Makassar",
       description:
-        "Company profile website for heavy machinery business, showcasing products, services, and contact information.",
-
-      image:
-        "/projects/11.png",
+        "Website company profile untuk bisnis alat berat yang menampilkan produk, layanan, dan informasi kontak.",
+      image: "/projects/11.png",
       technologies: ["Next.js", "NoSql", "firestore"],
       githubUrl: "#",
       liveUrl: "https://loadermakassar.id",
@@ -131,9 +123,9 @@ const PortfolioLanding: React.FC = () => {
     },
     {
       id: 6,
-      title: "Nekoswap (Decentralized Finance Platform)",
+      title: "Nekoswap (Platform DeFi)",
       description:
-        "DeFi application that enables secure, transparent, and automated transactions using smart contracts.",
+        "Aplikasi DeFi yang memungkinkan transaksi aman, transparan, dan otomatis menggunakan smart contract.",
       image: "LL.png",
       technologies: ["React", "Next.js", "Solidity", "TypeScript"],
       githubUrl: "#",
@@ -142,10 +134,9 @@ const PortfolioLanding: React.FC = () => {
     },
     {
       id: 7,
-      title: "Staybarbershop",
+      title: "Stay Barbershop",
       description:
-        "Barbershop website showcasing services, haircut styles, pricing, and online contact information.",
-
+        "Website barbershop yang menampilkan layanan, model potongan rambut, harga, dan informasi kontak online.",
       image: "/projects/12.png",
       technologies: ["React", "Next.js", "TypeScript", "TailwindCss"],
       githubUrl: "#",
@@ -154,10 +145,9 @@ const PortfolioLanding: React.FC = () => {
     },
     {
       id: 8,
-      title: "Aspct (Marketplace)",
+      title: "ASPCT (Marketplace)",
       description:
-        "Marketplace platform for buying and selling products with modern interface and user-friendly experience.",
-
+        "Platform marketplace untuk jual beli produk dengan tampilan modern dan pengalaman pengguna yang mudah.",
       image: "/projects/9.png",
       technologies: ["React", "Next.js", "TypeScript", "TailwindCss"],
       githubUrl: "#",
@@ -168,7 +158,7 @@ const PortfolioLanding: React.FC = () => {
       id: 9,
       title: "Ataya Agung Pratama",
       description:
-        "Company website for air conditioning service business, showcasing services, company profile, and contact information.",
+        "Website perusahaan jasa service AC yang menampilkan layanan, profil perusahaan, dan informasi kontak.",
       image: "/projects/7.png",
       technologies: ["React", "Next.js", "TypeScript", "TailwindCss"],
       githubUrl: "#",
@@ -179,8 +169,7 @@ const PortfolioLanding: React.FC = () => {
       id: 10,
       title: "Zerogic Token",
       description:
-        "Cryptocurrency token website providing information about the token, utilities, and ecosystem.",
-
+        "Website token kripto yang menyediakan informasi tentang token, utilitas, dan ekosistem.",
       image: "/projects/15.png",
       technologies: ["React", "Next.js", "TypeScript", "TailwindCss"],
       githubUrl: "#",
@@ -191,8 +180,7 @@ const PortfolioLanding: React.FC = () => {
       id: 11,
       title: "Klinik Medica",
       description:
-        "Clinic website providing information about medical services, doctors, and patient contact details.",
-
+        "Website klinik yang menyediakan informasi layanan medis, dokter, dan kontak pasien.",
       image: "/projects/14.png",
       technologies: ["React", "Next.js", "TypeScript", "TailwindCss"],
       githubUrl: "#",
@@ -201,9 +189,9 @@ const PortfolioLanding: React.FC = () => {
     },
     {
       id: 12,
-      title: "Barbershop POS Web Application",
+      title: "Aplikasi POS Barbershop (Web)",
       description:
-        "Point of sale (POS) web application for barbershop with transaction management, services list, and sales reports.",
+        "Aplikasi point of sale (POS) berbasis web untuk barbershop dengan manajemen transaksi, daftar layanan, dan laporan penjualan.",
       image: "/projects/6.png",
       technologies: ["React", "Next.js", "TypeScript", "TailwindCss"],
       githubUrl: "#",
@@ -212,9 +200,9 @@ const PortfolioLanding: React.FC = () => {
     },
     {
       id: 13,
-      title: "Letter Generator Web Application",
+      title: "Aplikasi Web Generator Surat",
       description:
-        "Web application for generating formal and custom letters automatically.",
+        "Aplikasi web untuk membuat surat formal dan kustom secara otomatis.",
       image: "/projects/13.png",
       technologies: ["React", "Next.js", "TypeScript", "TailwindCss"],
       githubUrl: "#",
@@ -223,9 +211,9 @@ const PortfolioLanding: React.FC = () => {
     },
     {
       id: 14,
-      title: "APK Store Web Application",
+      title: "Aplikasi Web APK Store",
       description:
-        "Web-based application for browsing and downloading Android applications.",
+        "Aplikasi berbasis web untuk browsing dan mengunduh aplikasi Android.",
       image: "/projects/8.png",
       technologies: ["React", "Next.js", "TypeScript", "TailwindCss"],
       githubUrl: "#",
@@ -234,9 +222,9 @@ const PortfolioLanding: React.FC = () => {
     },
     {
       id: 15,
-      title: "Used Motorcycle Marketplace Website",
+      title: "Website Marketplace Motor Bekas",
       description:
-        "Website for buying and selling used motorcycles with product listings and contact features.",
+        "Website untuk jual beli motor bekas dengan fitur listing produk dan kontak.",
       image: "/projects/10.png",
       technologies: ["React", "Next.js", "TypeScript", "TailwindCss"],
       githubUrl: "#",
@@ -245,77 +233,75 @@ const PortfolioLanding: React.FC = () => {
     },
     {
       id: 16,
-      title: "Smart Contract Development",
+      title: "Jasa Pengembangan Smart Contract",
       description:
-        "Smart contract development service for blockchain applications including tokens, staking, and decentralized systems.",
+        "Layanan pembuatan smart contract untuk aplikasi blockchain termasuk token, staking, dan sistem terdesentralisasi.",
       image: "/projects/16.png",
       technologies: ["Solidity", "EVM", "Blockchain", "Hardhat", "Web3.js"],
       githubUrl: "#",
       liveUrl: "https://polygonscan.com/token/0x4a7db095d7d56de8af219a5ae9c0b3be11f240f5#code",
       category: "Custom",
     },
+
   ];
-
-
 
 
   const services: Service[] = [
     {
-      title: "Company Profile Website",
-      description: "Professional website for business & company profile",
-      price: "$150",
+      title: "Website Company Profile",
+      description: "Website profesional untuk bisnis & UMKM",
+      price: "Rp 2.500.000",
       features: [
         "Landing Page",
-        "Mobile Responsive",
-        "Free 1 Month Hosting",
-        "Free Domain for 1 Year",
-      ],
+        "Responsive Mobile",
+        "Free Hosting 1 Bulan",
+        "Free Domain setahun"
+      ]
     },
     {
       title: "Web Application",
-      description: "Web-based systems (dashboard, marketplace, etc)",
-      price: "$300",
+      description: "Sistem berbasis web (dashboard, marketplace, dll)",
+      price: "Rp 5.000.000",
       features: [
-        "Login & Registration",
-        "Admin Dashboard",
-        "Database Integration",
-        "API Integration",
-      ],
+        "Login & Register",
+        "Dashboard Admin",
+        "Database",
+        "API Integration"
+      ]
     },
     {
-      title: "Mobile App (Android)",
-      description: "Android application using React Native / Flutter",
-      price: "$450",
+      title: "Mobile App (APK)",
+      description: "Aplikasi Android dengan React Native / Flutter",
+      price: "Rp 7.000.000",
       features: [
-        "Modern UI/UX",
+        "UI/UX Modern",
         "Firebase / Backend",
-        "Push Notifications",
-        "APK Build",
-      ],
+        "Push Notification",
+        "Build APK"
+      ]
     },
     {
       title: "Custom Web & App",
-      description: "Custom website and application development",
-      price: "Starting from $300",
+      description: "Aplikasi Android dengan React Native / Flutter",
+      price: "Mulai dari Rp 5.000.000",
       features: [
-        "Custom Features",
-        "Modern UI/UX",
+        "Custom Fitur",
+        "UI/UX Modern",
         "Firebase / Backend",
-        "Push Notifications",
-      ],
-    },
+        "Push Notification",
+      ]
+    }
   ];
 
 
   const skills: Skill[] = [
-    { name: "JavaScript / TypeScript", level: 95, icon: Code },
-    { name: "React / Next.js", level: 90, icon: Globe },
-    { name: "Node.js / Express", level: 85, icon: Database },
-    { name: "Solidity / Smart Contracts", level: 60, icon: Code },
+    { name: "JavaScript/TypeScript", level: 95, icon: Code },
+    { name: "React/Next.js", level: 90, icon: Globe },
+    { name: "Node.js/Express", level: 85, icon: Database },
+    { name: "Solidity/SmartContract", level: 60, icon: Code },
     { name: "React Native", level: 85, icon: Smartphone },
-    { name: "Database (SQL / NoSQL)", level: 88, icon: Database },
+    { name: "Database (SQL/NoSQL)", level: 88, icon: Database },
   ];
-
   const openProjectPreview = (project: Project): void => {
     setSelectedProject(project);
     setShowIframe(true);
@@ -331,7 +317,9 @@ const PortfolioLanding: React.FC = () => {
     { id: "all", name: "Semua" },
     { id: "web", name: "Web App" },
     { id: "mobile", name: "Mobile" },
-    { id: "Custom", name: "Custom" },
+    { id: "data", name: "Data" },
+    { id: "ai", name: "AI/ML" },
+    { id: "iot", name: "IoT" },
   ];
 
   const testimonials: Testimonial[] = [
@@ -505,7 +493,7 @@ const PortfolioLanding: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex-shrink-0">
-              <h1 className="text-xl font-bold text-white bg-black/60 px-3 py-1 rounded-lg">
+              <h1 className="text-xl font-bold text-black">
                 ForgetzStudio
               </h1>
             </div>
@@ -520,37 +508,28 @@ const PortfolioLanding: React.FC = () => {
                     onClick={() => scrollToSection(item)}
                     className={`px-3 py-2 rounded-md text-sm font-medium capitalize transition-colors ${activeSection === item
                       ? "bg-emerald-600 text-black"
-                      : "text-white hover:bg-gray-700 hover:text-white"
+                      : "text-black hover:bg-gray-700 hover:text-white"
                       }`}
                   >
                     {item}
                   </button>
                 ))}
-
-                {/* STORE MENU */}
-                <a
-                  href="/store"
-                  className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-700 hover:text-white transition-colors"
-                >
-                  Store
-                </a>
-
-                {/* LANGUAGE SWITCH */}
                 <div className="flex items-center gap-2 ml-4">
                   <a
                     href="/id"
-                    className="px-3 py-1 rounded-md text-sm font-medium border border-gray-400 text-white hover:bg-gray-700 hover:text-white"
+                    className="px-3 py-1 rounded-md text-sm font-medium border border-gray-400 text-black hover:bg-gray-700 hover:text-white"
                   >
                     ID
                   </a>
 
                   <a
                     href="/"
-                    className="px-3 py-1 rounded-md text-sm font-medium border border-gray-400 text-white hover:bg-gray-700 hover:text-white"
+                    className="px-3 py-1 rounded-md text-sm font-medium border border-gray-400 text-black hover:bg-gray-700 hover:text-white"
                   >
                     EN
                   </a>
                 </div>
+
               </div>
             </div>
 
@@ -567,7 +546,7 @@ const PortfolioLanding: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile menu */}
+       {/* Mobile menu */}
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-800">
@@ -611,7 +590,6 @@ const PortfolioLanding: React.FC = () => {
           </div>
         )}
 
-
       </nav>
 
       {/* Hero Section */}
@@ -637,36 +615,33 @@ const PortfolioLanding: React.FC = () => {
         <div className="max-w-4xl mx-auto text-center px-4 relative z-10">
           <div className="animate-fade-in">
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              <span className="text-white/70">
-                Website & Mobile App Development Services
+              <span className="text-black">
+                Jasa Pembuatan Website & Aplikasi Mobile
               </span>
             </h1>
 
 
-
-            <p className="text-xl md:text-2xl text-white/70 mb-8 max-w-3xl mx-auto">
-              We build professional websites, web applications, and mobile apps
-              to help businesses and startups grow with modern design and high performance.
+            <p className="text-xl md:text-2xl text-black mb-8 max-w-3xl mx-auto">
+              Kami menyediakan jasa pembuatan website, web app, dan aplikasi mobile (APK)
+              untuk bisnis, startup, dan UMKM dengan desain modern dan performa optimal.
             </p>
-
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <button
                 onClick={() => scrollToSection("services")}
                 className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105"
               >
-                View Services
+                Lihat Layanan
               </button>
 
               <a
                 href="https://wa.me/6289602203266"
                 target="_blank"
-                className="border-2 text-white border-gray-400 hover:border-white px-8 py-3 rounded-lg font-semibold transition-all hover:bg-white hover:text-gray-900"
+                className="border-2 text-black border-gray-400 hover:border-white px-8 py-3 rounded-lg font-semibold transition-all hover:bg-white hover:text-gray-900"
               >
-                Contact Us
+                Hubungi Kami
               </a>
             </div>
-
           </div>
         </div>
 
@@ -682,7 +657,7 @@ const PortfolioLanding: React.FC = () => {
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-16">
             <span className="text-black">
-              About us
+              Tentang Kami
             </span>
           </h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -696,15 +671,16 @@ const PortfolioLanding: React.FC = () => {
                 Passionate Developer
               </h3>
               <p className="text-black mb-6 leading-relaxed">
-                We are a full-stack developer passionate about creating innovative and
-                impactful technology solutions. With more than 5 years of experience,
-                we have developed various web and mobile applications for multiple industries.
+                Kami adalah seorang full stack developer dengan passion untuk
+                menciptakan solusi teknologi yang inovatif dan berdampak. Dengan
+                pengalaman lebih dari 5 tahun, Kami telah mengembangkan berbagai
+                aplikasi web dan mobile untuk berbagai industri.
               </p>
-
               <p className="text-black mb-6 leading-relaxed">
-                Our expertise includes frontend development with React/Next.js,
-                backend development with Node.js, mobile development with React Native,
-                and working with various databases and cloud technologies.
+                Keahlian Kami mencakup frontend development dengan
+                React/Next.js, backend dengan Node.js, mobile development
+                dengan React Native, dan berbagai database serta cloud
+                technologies.
               </p>
               <div className="flex space-x-4">
                 <a
@@ -736,12 +712,13 @@ const PortfolioLanding: React.FC = () => {
         <div className="max-w-6xl mx-auto px-4">
 
           <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">
-            Trusted By Companies
+            Perusahaan Kepercayaan Kami
           </h2>
 
           <p className="text-center text-gray-600 mb-12">
-            Some companies and brands that have worked with Forgetz Studio
+            Beberapa perusahaan & brand yang telah bekerja sama dengan ForgetStudio
           </p>
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
 
             {trustedCompanies.map((company, index) => (
@@ -807,8 +784,7 @@ const PortfolioLanding: React.FC = () => {
 
           <h2 className="text-4xl font-bold text-center mb-12">
             <span className="text-black">
-              Our Website & App Development Services
-
+              Layanan Jasa Pembuatan Website & Aplikasi
             </span>
           </h2>
 
@@ -846,7 +822,7 @@ const PortfolioLanding: React.FC = () => {
                   onClick={() => trackEvent("generate_lead", { method: "whatsapp" })}
                   className="block text-center bg-emerald-600 hover:bg-emerald-500 py-2 rounded-lg font-semibold"
                 >
-                  Order Now
+                  Pesan Sekarang
                 </a>
 
               </div>
@@ -865,9 +841,9 @@ const PortfolioLanding: React.FC = () => {
             </span>
           </h2>
           <p className="text-center text-gray-900 mb-12 max-w-2xl mx-auto">
-            Below are some of the projects I have built using modern technologies.
+            Berikut adalah beberapa project yang telah saya kembangkan
+            menggunakan berbagai teknologi modern
           </p>
-
 
 
           {/* Filter Buttons */}
@@ -893,13 +869,11 @@ const PortfolioLanding: React.FC = () => {
                 className="bg-gray-900 rounded-xl overflow-hidden border border-gray-700 hover:border-emerald-500 transition-all group"
               >
                 <div className="relative overflow-hidden">
-
                   <img
                     src={project.image}
                     alt={project.title}
                     className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                   />
-
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                     <div className="absolute bottom-4 right-4 flex space-x-2">
                       <button
@@ -929,17 +903,9 @@ const PortfolioLanding: React.FC = () => {
                   </div>
                 </div>
                 <div className="p-6">
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="Visit Site"
-                  >
-                    <h3 className="text-xl font-semibold mb-2">
-                      {project.title}
-                    </h3>
-                  </a>
-
+                  <h3 className="text-xl font-semibold mb-2">
+                    {project.title}
+                  </h3>
                   <p className="text-gray-400 mb-4 text-sm leading-relaxed">
                     {project.description}
                   </p>
@@ -966,7 +932,7 @@ const PortfolioLanding: React.FC = () => {
 
           <h2 className="text-4xl font-bold text-center mb-12">
             <span className="text-black">
-              What Our Clients Say
+              Apa Kata Klien
             </span>
           </h2>
 
@@ -1007,14 +973,13 @@ const PortfolioLanding: React.FC = () => {
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-8">
             <span className="bg-gradient-to-r from-red-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
-              Let's Work Together
+              Mari Berkolaborasi
             </span>
           </h2>
-
           <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
-            Interested in working together? I am ready to help turn your digital ideas into reality.
+            Tertarik untuk bekerja sama? Saya siap membantu mewujudkan ide
+            digital Anda menjadi kenyataan.
           </p>
-
 
           <div className="grid md:grid-cols-2 gap-12">
             <div>
@@ -1060,20 +1025,14 @@ const PortfolioLanding: React.FC = () => {
                     className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:border-emerald-500 focus:outline-none transition-colors resize-none"
                   ></textarea>
                 </div>
-                <a
-                  href="https://wa.me/6289602203266"
-                  target="_blank"
-                  onClick={() => trackEvent("generate_lead", { method: "whatsapp" })}
-
+                <button
+                  onClick={() =>
+                    alert("Fitur pengiriman pesan akan segera tersedia!")
+                  }
+                  className="w-full bg-gradient-to-r from-red-600 via-blue-600 to-emerald-600 hover:from-red-700 hover:via-blue-700 hover:to-emerald-700 py-3 rounded-lg font-semibold transition-all transform hover:scale-105"
                 >
-                  <button
-
-                    className="w-full bg-gradient-to-r from-red-600 via-blue-600 to-emerald-600 hover:from-red-700 hover:via-blue-700 hover:to-emerald-700 py-3 rounded-lg font-semibold transition-all transform hover:scale-105"
-                  >
-                    Kirim Pesan
-                  </button>
-                </a>
-
+                  Kirim Pesan
+                </button>
               </div>
             </div>
           </div>

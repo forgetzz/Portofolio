@@ -13,13 +13,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Jasa Pembuatan Website & Aplikasi | Forgetz Studio",
+  title: "Jasa Pembuatan Website & Aplikasi Profesional | Forgetz Studio",
   description:
-    "Forgetz Studio menyediakan jasa pembuatan website, web app, dan aplikasi mobile (APK) untuk UMKM, bisnis, dan startup dengan desain modern dan performa optimal.",
+    "Forgetz Studio – Jasa pembuatan website, web app, dan aplikasi mobile (APK) profesional untuk UMKM, bisnis, dan startup. Solusi digital cepat, responsif, SEO friendly, dan desain modern, website harga terjangkau",
   icons: {
     icon: [{ url: "/log.png", sizes: "32x32", type: "image/png" }],
   },
 };
+
 
 
 export default function RootLayout({
@@ -30,6 +31,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="alternate" hrefLang="en" href="/en" />
+        <link rel="alternate" hrefLang="id" href="/" />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

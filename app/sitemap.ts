@@ -5,6 +5,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: "https://forgetzstudio.com",
       lastModified: new Date(),
+    },
+    {
+      url: "https://forgetzstudio.com/store",
+      lastModified: new Date(),
+    },
+    {
+      url: "https://forgetzstudio.com/id",
+      lastModified: new Date(),
     }
   
   ];
