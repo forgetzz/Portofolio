@@ -501,13 +501,21 @@ const PortfolioLanding: React.FC = () => {
       )}
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full  backdrop-blur-sm border-b border-gray-800 z-50">
+      <nav className="
+fixed top-0 w-full z-50
+bg-gradient-to-r from-slate-900/80 via-indigo-950/80 to-emerald-900/80
+backdrop-blur-md
+border-b border-white/10
+shadow-lg shadow-black/30
+">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex-shrink-0">
-              <h1 className="text-xl font-bold text-white bg-black/60 px-3 py-1 rounded-lg">
+              <h1 className="text-xl font-bold text-white px-3 py-1 rounded-lg
+drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
                 ForgetzStudio
               </h1>
+
             </div>
 
             <div className="hidden md:block">
@@ -617,148 +625,218 @@ const PortfolioLanding: React.FC = () => {
       {/* Hero Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center relative overflow-hidden pt-10"
+        className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16"
       >
-        {/* Video Background */}
+
+        {/* VIDEO BACKGROUND */}
         <video
           autoPlay
           loop
           muted
           playsInline
+          preload="metadata"
+          poster="/pos.png"
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source src="/bg.mp4" type="video/mp4" />
         </video>
 
-        {/* Overlay agar teks terbaca */}
-        <div className="absolute inset-0 bg-black/50"></div>
+        {/* GRADIENT OVERLAY */}
+        <div className="absolute inset-0 
+    bg-gradient-to-br from-black/70 via-slate-900/60 to-emerald-900/60">
+        </div>
 
-        {/* Content */}
+        {/* CONTENT */}
         <div className="max-w-4xl mx-auto text-center px-4 relative z-10">
-          <div className="animate-fade-in">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              <span className="text-white/70">
-                Website & Mobile App Development Services
-              </span>
-            </h1>
 
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 
+      text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.25)]">
+            Website & Mobile App <br />
+            <span className="text-emerald-400">
+              Development Services
+            </span>
+          </h1>
 
+          <p className="text-lg md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto">
+            We build professional websites, web applications, and mobile apps
+            to help businesses and startups grow with modern design and high performance.
+          </p>
 
-            <p className="text-xl md:text-2xl text-white/70 mb-8 max-w-3xl mx-auto">
-              We build professional websites, web applications, and mobile apps
-              to help businesses and startups grow with modern design and high performance.
-            </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
 
+            <button
+              onClick={() => scrollToSection("services")}
+              className="
+        bg-gradient-to-r from-emerald-500 to-blue-600
+        hover:from-emerald-600 hover:to-blue-700
+        text-white px-8 py-3 rounded-lg font-semibold
+        transition-all transform hover:scale-105
+        shadow-lg shadow-emerald-500/30
+        "
+            >
+              View Services
+            </button>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button
-                onClick={() => scrollToSection("services")}
-                className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105"
-              >
-                View Services
-              </button>
-
-              <a
-                href="https://wa.me/6289602203266"
-                target="_blank"
-                className="border-2 text-white border-gray-400 hover:border-white px-8 py-3 rounded-lg font-semibold transition-all hover:bg-white hover:text-gray-900"
-              >
-                Contact Us
-              </a>
-            </div>
+            <a
+              href="https://wa.me/6289602203266"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+        border border-white/50 text-white
+        hover:bg-white hover:text-black
+        px-8 py-3 rounded-lg font-semibold
+        transition-all
+        "
+            >
+              Contact Us
+            </a>
 
           </div>
+
         </div>
 
-        {/* Icon scroll */}
+        {/* SCROLL ICON */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
-          <ChevronDown size={32} className="text-gray-500" />
+          <ChevronDown size={32} className="text-white/70" />
         </div>
+
       </section>
 
-
       {/* About Section */}
-      <section id="about" className="py-20 bg-white">
+      <section
+        id="about"
+        className="py-24 bg-gradient-to-b from-slate-100 to-white"
+      >
         <div className="max-w-6xl mx-auto px-4">
+
+          {/* TITLE */}
           <h2 className="text-4xl font-bold text-center mb-16">
-            <span className="text-black">
-              About us
+            <span className="bg-gradient-to-r from-emerald-500 to-blue-600 bg-clip-text text-transparent">
+              About Us
             </span>
           </h2>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="flex justify-center items-center">
-              <img className="rounded-full  h-80 border-5 border-black" src="/log.png" alt="" />
 
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+
+            {/* IMAGE */}
+            <div className="flex justify-center">
+              <div className="
+          p-1 rounded-full 
+          bg-gradient-to-r from-emerald-500 to-blue-600
+        ">
+                <img
+                  src="/log.png"
+                  alt="ForgetzStudio Logo"
+                  className="
+              rounded-full h-72 w-72 object-cover
+              bg-white
+            "
+                />
+              </div>
             </div>
 
-            <div>
-              <h3 className="text-2xl font-semibold mb-6 text-black">
-                Passionate Developer
+            {/* CONTENT */}
+            <div className="
+        bg-white rounded-2xl p-8
+        shadow-xl shadow-black/10
+      ">
+
+              <h3 className="text-2xl font-semibold mb-4 text-gray-900">
+                Passionate Full-Stack Developer
               </h3>
-              <p className="text-black mb-6 leading-relaxed">
+
+              <p className="text-gray-700 mb-4 leading-relaxed">
                 We are a full-stack developer passionate about creating innovative and
                 impactful technology solutions. With more than 5 years of experience,
                 we have developed various web and mobile applications for multiple industries.
               </p>
 
-              <p className="text-black mb-6 leading-relaxed">
-                Our expertise includes frontend development with React/Next.js,
+              <p className="text-gray-700 mb-6 leading-relaxed">
+                Our expertise includes frontend development with React & Next.js,
                 backend development with Node.js, mobile development with React Native,
-                and working with various databases and cloud technologies.
+                and working with databases and cloud technologies.
               </p>
-              <div className="flex space-x-4">
+
+              {/* SOCIAL */}
+              <div className="flex gap-4">
                 <a
                   href="#"
-                  className="text-emerald-400 hover:text-emerald-300 transition-colors"
+                  className="p-2 rounded-full bg-emerald-500/10 text-emerald-500 hover:bg-emerald-500 hover:text-white transition"
                 >
-                  <Github size={24} />
+                  <Github size={22} />
                 </a>
+
                 <a
                   href="#"
-                  className="text-blue-400 hover:text-blue-300 transition-colors"
+                  className="p-2 rounded-full bg-blue-500/10 text-blue-500 hover:bg-blue-500 hover:text-white transition"
                 >
-                  <Linkedin size={24} />
+                  <Linkedin size={22} />
                 </a>
+
                 <a
                   href="#"
-                  className="text-red-400 hover:text-red-300 transition-colors"
+                  className="p-2 rounded-full bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition"
                 >
-                  <Mail size={24} />
+                  <Mail size={22} />
                 </a>
               </div>
+
             </div>
+
           </div>
+
         </div>
       </section>
 
-      {/* Trusted Companies Section */}
-      <section id="trusted" className="py-20 bg-white">
+      {/* Trusted Section */}
+      <section
+        id="trusted"
+        className="py-24 bg-gradient-to-b from-white to-slate-100"
+      >
         <div className="max-w-6xl mx-auto px-4">
 
-          <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">
-            Trusted By Companies
+          {/* TITLE */}
+          <h2 className="text-4xl font-bold text-center mb-4">
+            <span className="bg-gradient-to-r from-emerald-500 to-blue-600 bg-clip-text text-transparent">
+              Trusted By Companies
+            </span>
           </h2>
 
-          <p className="text-center text-gray-600 mb-12">
+          <p className="text-center text-gray-600 mb-14">
             Some companies and brands that have worked with Forgetz Studio
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+
+          {/* LOGO GRID */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
 
             {trustedCompanies.map((company, index) => (
-              <div
+              <a
                 key={index}
-                className="flex justify-center items-center"
+                href={company.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+          group bg-white/80 backdrop-blur
+          rounded-xl p-6
+          flex items-center justify-center
+          shadow-md shadow-black/10
+          hover:shadow-emerald-500/30
+          transition-all hover:-translate-y-1
+          "
               >
-                <a target="_blank" href={
-                  company.link}>
-                  <img
-                    src={company.logo}
-                    alt={company.name}
-                    className="h-30 object-contain"
-                  />
-                </a>
-
-              </div>
+                <img
+                  src={company.logo}
+                  alt={company.name}
+                  loading="lazy"
+                  className="
+            h-20 object-contain
+            opacity-70
+            group-hover:grayscale-0
+            group-hover:opacity-100
+            transition
+            "
+                />
+              </a>
             ))}
 
           </div>
@@ -767,75 +845,115 @@ const PortfolioLanding: React.FC = () => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 bg-white">
+      {/* Skills Section */}
+      <section
+        id="skills"
+        className="py-24 bg-gradient-to-b from-slate-100 to-white"
+      >
         <div className="max-w-6xl mx-auto px-4">
+
+          {/* TITLE */}
           <h2 className="text-4xl font-bold text-center mb-16">
-            <span className="text-black">
+            <span className="bg-gradient-to-r from-emerald-500 to-blue-600 bg-clip-text text-transparent">
               Skills & Technologies
             </span>
           </h2>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
             {skills.map((skill: Skill, index: number) => {
               const IconComponent: LucideIcon = skill.icon;
               return (
                 <div
                   key={index}
-                  className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-emerald-500 transition-all"
+                  className="
+            bg-white/80 backdrop-blur
+            p-6 rounded-xl
+            border border-white/40
+            shadow-md shadow-black/10
+            hover:shadow-emerald-500/30
+            transition-all hover:-translate-y-1
+            "
                 >
+
+                  {/* HEADER */}
                   <div className="flex items-center mb-4">
                     <IconComponent
                       size={24}
-                      className="text-emerald-400 mr-3"
+                      className="text-emerald-500 mr-3"
                     />
-                    <h3 className="text-lg font-semibold">{skill.name}</h3>
+                    <h3 className="text-lg font-semibold text-gray-900">
+                      {skill.name}
+                    </h3>
                   </div>
-                  <div className="w-full bg-gray-700 rounded-full h-3 mb-2">
+
+                  {/* BAR */}
+                  <div className="w-full bg-gray-200 rounded-full h-3 mb-2 overflow-hidden">
                     <div
-                      className="bg-gradient-to-r from-red-500 via-blue-500 to-emerald-500 h-3 rounded-full transition-all duration-1000"
+                      className="
+                bg-gradient-to-r from-emerald-500 to-blue-600
+                h-3 rounded-full
+                transition-all duration-700
+                "
                       style={{ width: `${skill.level}%` }}
                     ></div>
                   </div>
-                  <span className="text-sm text-gray-400">{skill.level}%</span>
+
+                  <span className="text-sm text-gray-600">
+                    {skill.level}%
+                  </span>
+
                 </div>
               );
             })}
+
           </div>
+
         </div>
       </section>
-      <section id="services" className="py-20 bg-white">
+
+      <section
+        id="services"
+        className="py-24 bg-gradient-to-b from-slate-100 to-white"
+      >
         <div className="max-w-7xl mx-auto px-4">
 
-          <h2 className="text-4xl font-bold text-center mb-12">
-            <span className="text-black">
+          <h2 className="text-4xl font-bold text-center mb-14">
+            <span className="bg-gradient-to-r from-emerald-500 to-blue-600 bg-clip-text text-transparent">
               Our Website & App Development Services
-
             </span>
           </h2>
-
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
             {services.map((service, index) => (
               <div
                 key={index}
-                className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-emerald-500 transition"
+                className="
+          bg-white/80 backdrop-blur
+          p-6 rounded-2xl
+          shadow-lg shadow-black/10
+          hover:shadow-emerald-500/30
+          transition-all hover:-translate-y-1
+          "
               >
-                <h3 className="text-xl font-semibold mb-2">
+
+                <h3 className="text-xl font-semibold mb-2 text-gray-900">
                   {service.title}
                 </h3>
 
-                <p className="text-gray-400 mb-4">
+                <p className="text-gray-600 mb-4">
                   {service.description}
                 </p>
 
-                <p className="text-2xl font-bold text-emerald-400 mb-4">
+                <p className="text-2xl font-bold text-emerald-500 mb-4">
                   {service.price}
                 </p>
 
                 <ul className="space-y-2 mb-6">
                   {service.features.map((f, i) => (
-                    <li key={i} className="text-gray-300 text-sm">
-                      ✅ {f}
+                    <li key={i} className="text-gray-700 text-sm">
+                      ✔ {f}
                     </li>
                   ))}
                 </ul>
@@ -843,8 +961,14 @@ const PortfolioLanding: React.FC = () => {
                 <a
                   href="https://wa.me/6289602203266"
                   target="_blank"
-                  onClick={() => trackEvent("generate_lead", { method: "whatsapp" })}
-                  className="block text-center bg-emerald-600 hover:bg-emerald-500 py-2 rounded-lg font-semibold"
+                  rel="noopener noreferrer"
+                  className="
+            block text-center
+            bg-gradient-to-r from-emerald-500 to-blue-600
+            hover:from-emerald-600 hover:to-blue-700
+            text-white py-2 rounded-lg font-semibold
+            transition
+            "
                 >
                   Order Now
                 </a>
@@ -856,30 +980,37 @@ const PortfolioLanding: React.FC = () => {
 
         </div>
       </section>
+
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-white">
+      <section
+        id="projects"
+        className="py-24 bg-gradient-to-b from-white to-slate-100"
+      >
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-8">
-            <span className="text-black">
+
+          <h2 className="text-4xl font-bold text-center mb-4">
+            <span className="bg-gradient-to-r from-emerald-500 to-blue-600 bg-clip-text text-transparent">
               Portfolio Projects
             </span>
           </h2>
-          <p className="text-center text-gray-900 mb-12 max-w-2xl mx-auto">
+
+          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
             Below are some of the projects I have built using modern technologies.
           </p>
 
-
-
-          {/* Filter Buttons */}
+          {/* FILTER */}
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             {categories.map((category: Category) => (
               <button
                 key={category.id}
                 onClick={() => setFilter(category.id)}
-                className={`px-4 py-2 rounded-full transition-all ${filter === category.id
-                  ? "bg-emerald-600 text-white"
-                  : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                  }`}
+                className={`
+          px-4 py-2 rounded-full transition
+          ${filter === category.id
+                    ? "bg-emerald-500 text-white"
+                    : "bg-white shadow text-gray-700 hover:bg-emerald-50"
+                  }
+          `}
               >
                 {category.name}
               </button>
@@ -887,85 +1018,85 @@ const PortfolioLanding: React.FC = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
             {filteredProjects.map((project: Project) => (
               <div
                 key={project.id}
-                className="bg-gray-900 rounded-xl overflow-hidden border border-gray-700 hover:border-emerald-500 transition-all group"
+                className="
+          bg-white/80 backdrop-blur
+          rounded-2xl overflow-hidden
+          shadow-lg shadow-black/10
+          hover:shadow-emerald-500/30
+          transition-all hover:-translate-y-1
+          group
+          "
               >
-                <div className="relative overflow-hidden">
 
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-48 object-cover"
+                />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="absolute bottom-4 right-4 flex space-x-2">
-                      <button
-                        onClick={() => openProjectPreview(project)}
-                        className="bg-red-600 p-2 rounded-full hover:bg-red-500 transition-colors"
-                        title="Preview Website"
-                      >
-                        <Eye size={16} />
-                      </button>
-                      <a
-                        href={project.githubUrl}
-                        className="bg-gray-800 p-2 rounded-full hover:bg-gray-700 transition-colors"
-                        title="View Code"
-                      >
-                        <Github size={16} />
-                      </a>
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-emerald-600 p-2 rounded-full hover:bg-emerald-500 transition-colors"
-                        title="Visit Site"
-                      >
-                        <ExternalLink size={16} />
-                      </a>
-                    </div>
-                  </div>
-                </div>
                 <div className="p-6">
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="Visit Site"
-                  >
-                    <h3 className="text-xl font-semibold mb-2">
-                      {project.title}
-                    </h3>
-                  </a>
 
-                  <p className="text-gray-400 mb-4 text-sm leading-relaxed">
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-gray-600 mb-4 text-sm">
                     {project.description}
                   </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech: string, index: number) => (
+
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.map((tech, i) => (
                       <span
-                        key={index}
-                        className="bg-gray-800 text-emerald-400 px-3 py-1 rounded-full text-xs"
+                        key={i}
+                        className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
+
+                  <div className="flex gap-3">
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      className="text-emerald-500 font-semibold"
+                    >
+                      Live Demo
+                    </a>
+
+                    <a
+                      href={project.githubUrl}
+                      className="text-gray-500"
+                    >
+                      Code
+                    </a>
+                  </div>
+
                 </div>
+
               </div>
             ))}
+
           </div>
+
         </div>
       </section>
+
+
       {/* Services Section */}
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 bg-white">
+      <section
+        id="testimonials"
+        className="py-24 bg-gradient-to-b from-slate-100 to-white"
+      >
         <div className="max-w-6xl mx-auto px-4">
 
-          <h2 className="text-4xl font-bold text-center mb-12">
-            <span className="text-black">
+          <h2 className="text-4xl font-bold text-center mb-14">
+            <span className="bg-gradient-to-r from-emerald-500 to-blue-600 bg-clip-text text-transparent">
               What Our Clients Say
             </span>
           </h2>
@@ -975,23 +1106,32 @@ const PortfolioLanding: React.FC = () => {
             {testimonials.map((item, index) => (
               <div
                 key={index}
-                className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-emerald-500 transition"
+                className="
+          bg-white/80 backdrop-blur
+          p-6 rounded-xl
+          shadow-lg shadow-black/10
+          hover:shadow-emerald-500/30
+          transition-all hover:-translate-y-1
+          "
               >
 
                 <div className="flex mb-3">
                   {[...Array(item.rating)].map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-lg">★</span>
+                    <span key={i} className="text-yellow-400">★</span>
                   ))}
                 </div>
 
-                <p className="text-gray-300 italic mb-4">
+                <p className="text-gray-700 italic mb-4">
                   "{item.message}"
                 </p>
 
-                <div>
-                  <h4 className="font-semibold text-white">{item.name}</h4>
-                  <p className="text-sm text-gray-400">{item.role}</p>
-                </div>
+                <h4 className="font-semibold text-gray-900">
+                  {item.name}
+                </h4>
+
+                <p className="text-sm text-gray-500">
+                  {item.role}
+                </p>
 
               </div>
             ))}
@@ -1002,83 +1142,72 @@ const PortfolioLanding: React.FC = () => {
       </section>
 
 
+
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gray-900">
+      <section
+        id="contact"
+        className="py-24 bg-gradient-to-br from-slate-900 via-indigo-950 to-emerald-900 text-white"
+      >
         <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-8">
-            <span className="bg-gradient-to-r from-red-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
-              Let's Work Together
-            </span>
+
+          <h2 className="text-4xl font-bold text-center mb-6">
+            Let's Work Together
           </h2>
 
-          <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
+          <p className="text-center text-gray-300 mb-12">
             Interested in working together? I am ready to help turn your digital ideas into reality.
           </p>
 
-
           <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-semibold mb-6">Get In Touch</h3>
-              <div className="space-y-4">
-                <div className="flex items-center">
-                  <Mail className="text-red-400 mr-4" size={20} />
-                  <span className="text-gray-300"> forget.noxa90@gmail.com</span>
-                </div>
-                <div className="flex items-center">
-                  <Github className="text-emerald-400 mr-4" size={20} />
-                  <span className="text-gray-300">github.com/forgetzz</span>
-                </div>
-                {/* <div className="flex items-center">
-                  <Linkedin className="text-blue-400 mr-4" size={20} />
-                  <span className="text-gray-300">
-                    linkedin.com/in/yourprofile
-                  </span>
-                </div> */}
-              </div>
-            </div>
 
             <div>
-              <div className="space-y-6">
-                <div>
-                  <input
-                    type="text"
-                    placeholder="Nama Anda"
-                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:border-emerald-500 focus:outline-none transition-colors"
-                  />
-                </div>
-                <div>
-                  <input
-                    type="email"
-                    placeholder="Email Anda"
-                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:border-emerald-500 focus:outline-none transition-colors"
-                  />
-                </div>
-                <div>
-                  <textarea
-                    placeholder="Pesan Anda"
-                    rows={4}
-                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:border-emerald-500 focus:outline-none transition-colors resize-none"
-                  ></textarea>
-                </div>
-                <a
-                  href="https://wa.me/6289602203266"
-                  target="_blank"
-                  onClick={() => trackEvent("generate_lead", { method: "whatsapp" })}
+              <h3 className="text-2xl font-semibold mb-6">
+                Get In Touch
+              </h3>
 
-                >
-                  <button
-
-                    className="w-full bg-gradient-to-r from-red-600 via-blue-600 to-emerald-600 hover:from-red-700 hover:via-blue-700 hover:to-emerald-700 py-3 rounded-lg font-semibold transition-all transform hover:scale-105"
-                  >
-                    Kirim Pesan
-                  </button>
-                </a>
-
-              </div>
+              <p className="mb-2">📧 forget.noxa90@gmail.com</p>
+              <p>💻 github.com/forgetzz</p>
             </div>
+
+            <div className="space-y-4">
+
+              <input
+                placeholder="Nama Anda"
+                className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3"
+              />
+
+              <input
+                placeholder="Email Anda"
+                className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3"
+              />
+
+              <textarea
+                rows={4}
+                placeholder="Pesan Anda"
+                className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 resize-none"
+              ></textarea>
+
+              <a
+                href="https://wa.me/6289602203266"
+                target="_blank"
+                className="
+          block text-center
+          bg-gradient-to-r from-emerald-500 to-blue-600
+          py-3 rounded-lg font-semibold
+          hover:from-emerald-600 hover:to-blue-700
+          transition
+          "
+              >
+                Kirim Pesan
+              </a>
+
+            </div>
+
           </div>
+
         </div>
       </section>
+
 
 
       {/* Footer */}
