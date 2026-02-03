@@ -1214,8 +1214,7 @@ drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
       <footer className="bg-gray-800 border-t border-gray-700 py-8">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <p className="text-gray-400">
-            © 2024 ForgetzStudio Dibuat dengan ❤️ menggunakan React & Tailwind
-            CSS
+            © 2024 ForgetzStudio created with ❤️ using React & Tailwind CSS
           </p>
         </div>
       </footer>

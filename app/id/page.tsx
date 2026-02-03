@@ -640,15 +640,15 @@ drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6 
       text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.25)]">
-            Website & Mobile App <br />
             <span className="text-emerald-400">
-              Development Services
+              Layanan Pengembangan
             </span>
+            <br /> Website & Aplikasi Seluler
+
           </h1>
 
           <p className="text-lg md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto">
-            We build professional websites, web applications, and mobile apps
-            to help businesses and startups grow with modern design and high performance.
+            Kami menyediakan layanan pembuatan website, aplikasi web, dan aplikasi mobile profesional untuk membantu bisnis dan startup tumbuh lebih cepat dengan desain modern dan kinerja optimal.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -663,7 +663,7 @@ drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
         shadow-lg shadow-emerald-500/30
         "
             >
-              View Services
+              Lihat layanan
             </button>
 
             <a
@@ -677,7 +677,7 @@ drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
         transition-all
         "
             >
-              Contact Us
+              kontak kami
             </a>
 
           </div>
@@ -701,7 +701,7 @@ drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
           {/* TITLE */}
           <h2 className="text-4xl font-bold text-center mb-16">
             <span className="bg-gradient-to-r from-emerald-500 to-blue-600 bg-clip-text text-transparent">
-              About Us
+              Tentang kami 
             </span>
           </h2>
 
@@ -731,19 +731,15 @@ drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
       ">
 
               <h3 className="text-2xl font-semibold mb-4 text-gray-900">
-                Passionate Full-Stack Developer
+               Pengembang Full-Stack yang Bersemangat
               </h3>
 
               <p className="text-gray-700 mb-4 leading-relaxed">
-                We are a full-stack developer passionate about creating innovative and
-                impactful technology solutions. With more than 5 years of experience,
-                we have developed various web and mobile applications for multiple industries.
+               Kami adalah pengembang full-stack yang bersemangat menciptakan solusi teknologi inovatif dan berdampak. Dengan pengalaman lebih dari 5 tahun, kami telah mengembangkan berbagai aplikasi web dan mobile untuk berbagai industri.
               </p>
 
               <p className="text-gray-700 mb-6 leading-relaxed">
-                Our expertise includes frontend development with React & Next.js,
-                backend development with Node.js, mobile development with React Native,
-                and working with databases and cloud technologies.
+                Keahlian kami meliputi pengembangan frontend dengan React & Next.js, pengembangan backend dengan Node.js, pengembangan aplikasi mobile dengan React Native, serta bekerja dengan basis data dan teknologi cloud.
               </p>
 
               {/* SOCIAL */}
@@ -787,12 +783,12 @@ drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
           {/* TITLE */}
           <h2 className="text-4xl font-bold text-center mb-4">
             <span className="bg-gradient-to-r from-emerald-500 to-blue-600 bg-clip-text text-transparent">
-              Trusted By Companies
+             Dipercaya oleh Perusahaan
             </span>
           </h2>
 
           <p className="text-center text-gray-600 mb-14">
-            Some companies and brands that have worked with Forgetz Studio
+           Beberapa perusahaan dan merek yang telah bekerja sama dengan Forgetzstudio
           </p>
 
           {/* LOGO GRID */}
@@ -844,7 +840,7 @@ drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
           {/* TITLE */}
           <h2 className="text-4xl font-bold text-center mb-16">
             <span className="bg-gradient-to-r from-emerald-500 to-blue-600 bg-clip-text text-transparent">
-              Skills & Technologies
+            Keterampilan & Teknologi
             </span>
           </h2>
 
@@ -909,7 +905,7 @@ drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
 
           <h2 className="text-4xl font-bold text-center mb-14">
             <span className="bg-gradient-to-r from-emerald-500 to-blue-600 bg-clip-text text-transparent">
-              Our Website & App Development Services
+              Layanan Pengembangan Website & Aplikasi Kami
             </span>
           </h2>
 
@@ -959,7 +955,7 @@ drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
             transition
             "
                 >
-                  Order Now
+                  Pesan sekarang
                 </a>
 
               </div>
@@ -979,12 +975,12 @@ drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
 
           <h2 className="text-4xl font-bold text-center mb-4">
             <span className="bg-gradient-to-r from-emerald-500 to-blue-600 bg-clip-text text-transparent">
-              Portfolio Projects
+             Proyek Portofolio
             </span>
           </h2>
 
           <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            Below are some of the projects I have built using modern technologies.
+           Berikut adalah beberapa proyek yang telah saya buat menggunakan teknologi modern.
           </p>
 
           {/* FILTER */}
@@ -1086,7 +1082,7 @@ drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
 
           <h2 className="text-4xl font-bold text-center mb-14">
             <span className="bg-gradient-to-r from-emerald-500 to-blue-600 bg-clip-text text-transparent">
-              What Our Clients Say
+             Apa Kata Klien Kami
             </span>
           </h2>
 
@@ -1140,18 +1136,18 @@ drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
         <div className="max-w-4xl mx-auto px-4">
 
           <h2 className="text-4xl font-bold text-center mb-6">
-            Let's Work Together
+            Mari Bekerja Sama
           </h2>
 
           <p className="text-center text-gray-300 mb-12">
-            Interested in working together? I am ready to help turn your digital ideas into reality.
+           Tertarik untuk bekerja sama? Saya siap membantu mewujudkan ide-ide digital Anda.
           </p>
 
           <div className="grid md:grid-cols-2 gap-12">
 
             <div>
               <h3 className="text-2xl font-semibold mb-6">
-                Get In Touch
+              Hubungi Kami
               </h3>
 
               <p className="mb-2">📧 forget.noxa90@gmail.com</p>
