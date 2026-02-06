@@ -17,6 +17,11 @@ import {
   LucideIcon,
 } from "lucide-react";
 import { link } from "fs";
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
 import { trackEvent } from "@/lib/gtag";
 interface Service {
   title: string;
@@ -62,6 +67,21 @@ const PortfolioLanding: React.FC = () => {
   const [isVisible, setIsVisible] = useState<Record<string, boolean>>({});
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [showIframe, setShowIframe] = useState<boolean>(false);
+  const mapRef = useRef(null);
+
+  gsap.registerPlugin(ScrollTrigger);
+  useGSAP(() => {
+    gsap.from(mapRef.current, {
+      opacity: 0,
+      y: 60,
+      duration: 1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: mapRef.current,
+        start: "top 80%",
+      },
+    });
+  });
 
   // Sample project data - replace with your actual projects
   const projects: Project[] = [
@@ -1202,9 +1222,23 @@ drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
               </a>
 
             </div>
+            <div ref={mapRef} className="md:col-span-2 w-full">
 
+              <h3 className="text-xl font-semibold mb-4 text-center md:text-left">
+                📍 Alamat Kantor Kami
+              </h3>
+
+              <div className="w-full h-[350px] rounded-xl overflow-hidden border border-white/20 shadow-lg">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.99550508894!2d119.5341459!3d-5.1044221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbefb831617eb09%3A0xb1d71384ca5f90c7!2sforgetz%20studio!5e0!3m2!1sid!2sid!4v1770370754202!5m2!1sid!2sid"
+                  className="w-full h-full border-0"
+                  loading="lazy"
+                  allowFullScreen
+                ></iframe>
+
+              </div>
+            </div>
           </div>
-
         </div>
       </section>
 

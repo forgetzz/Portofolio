@@ -18,6 +18,12 @@ import {
 } from "lucide-react";
 import { link } from "fs";
 import { trackEvent } from "@/lib/gtag";
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+
 interface Service {
   title: string;
   description: string;
@@ -62,6 +68,21 @@ const PortfolioLanding: React.FC = () => {
   const [isVisible, setIsVisible] = useState<Record<string, boolean>>({});
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [showIframe, setShowIframe] = useState<boolean>(false);
+  const mapRef = useRef(null);
+
+  gsap.registerPlugin(ScrollTrigger);
+  useGSAP(() => {
+    gsap.from(mapRef.current, {
+      opacity: 0,
+      y: 60,
+      duration: 1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: mapRef.current,
+        start: "top 80%",
+      },
+    });
+  });
 
   // Sample project data - replace with your actual projects
   const projects: Project[] = [
@@ -248,52 +269,52 @@ const PortfolioLanding: React.FC = () => {
 
 
 
-  const services: Service[] = [
-    {
-      title: "Company Profile Website",
-      description: "Professional website for business & company profile",
-      price: "$150",
-      features: [
-        "Landing Page",
-        "Mobile Responsive",
-        "Free 1 Month Hosting",
-        "Free Domain for 1 Year",
-      ],
-    },
-    {
-      title: "Web Application",
-      description: "Web-based systems (dashboard, marketplace, etc)",
-      price: "$300",
-      features: [
-        "Login & Registration",
-        "Admin Dashboard",
-        "Database Integration",
-        "API Integration",
-      ],
-    },
-    {
-      title: "Mobile App (Android)",
-      description: "Android application using React Native / Flutter",
-      price: "$450",
-      features: [
-        "Modern UI/UX",
-        "Firebase / Backend",
-        "Push Notifications",
-        "APK Build",
-      ],
-    },
-    {
-      title: "Custom Web & App",
-      description: "Custom website and application development",
-      price: "Starting from $300",
-      features: [
-        "Custom Features",
-        "Modern UI/UX",
-        "Firebase / Backend",
-        "Push Notifications",
-      ],
-    },
-  ];
+const services: Service[] = [
+  {
+    title: "Website Company Profile",
+    description: "Website profesional untuk profil bisnis & perusahaan",
+    price: "Rp2.500.000",
+    features: [
+      "Landing Page",
+      "Responsif di Semua Perangkat",
+      "Gratis Hosting 1 Bulan",
+      "Gratis Domain 1 Tahun",
+    ],
+  },
+  {
+    title: "Aplikasi Web",
+    description: "Sistem berbasis web (dashboard, marketplace, dll)",
+    price: "Rp5.000.000",
+    features: [
+      "Login & Registrasi",
+      "Dashboard Admin",
+      "Integrasi Database",
+      "Integrasi API",
+    ],
+  },
+  {
+    title: "Aplikasi Mobile (Android)",
+    description: "Aplikasi Android",
+    price: "Rp7.000.000",
+    features: [
+      "UI/UX Modern",
+      "Firebase / Backend",
+      "Notifikasi Push",
+      "File APK Siap Install",
+    ],
+  },
+  {
+    title: "Website & Aplikasi Custom",
+    description: "Pengembangan website dan aplikasi sesuai kebutuhan",
+    price: "Mulai dari Rp5.000.000",
+    features: [
+      "Fitur Custom",
+      "UI/UX Modern",
+      "Firebase / Backend",
+      "Notifikasi Push",
+    ],
+  },
+];
 
 
   const skills: Skill[] = [
@@ -701,7 +722,7 @@ drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
           {/* TITLE */}
           <h2 className="text-4xl font-bold text-center mb-16">
             <span className="bg-gradient-to-r from-emerald-500 to-blue-600 bg-clip-text text-transparent">
-              Tentang kami 
+              Tentang kami
             </span>
           </h2>
 
@@ -731,11 +752,11 @@ drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
       ">
 
               <h3 className="text-2xl font-semibold mb-4 text-gray-900">
-               Pengembang Full-Stack yang Bersemangat
+                Pengembang Full-Stack yang Bersemangat
               </h3>
 
               <p className="text-gray-700 mb-4 leading-relaxed">
-               Kami adalah pengembang full-stack yang bersemangat menciptakan solusi teknologi inovatif dan berdampak. Dengan pengalaman lebih dari 5 tahun, kami telah mengembangkan berbagai aplikasi web dan mobile untuk berbagai industri.
+                Kami adalah pengembang full-stack yang bersemangat menciptakan solusi teknologi inovatif dan berdampak. Dengan pengalaman lebih dari 5 tahun, kami telah mengembangkan berbagai aplikasi web dan mobile untuk berbagai industri.
               </p>
 
               <p className="text-gray-700 mb-6 leading-relaxed">
@@ -783,12 +804,12 @@ drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
           {/* TITLE */}
           <h2 className="text-4xl font-bold text-center mb-4">
             <span className="bg-gradient-to-r from-emerald-500 to-blue-600 bg-clip-text text-transparent">
-             Dipercaya oleh Perusahaan
+              Dipercaya oleh Perusahaan
             </span>
           </h2>
 
           <p className="text-center text-gray-600 mb-14">
-           Beberapa perusahaan dan merek yang telah bekerja sama dengan Forgetzstudio
+            Beberapa perusahaan dan merek yang telah bekerja sama dengan Forgetzstudio
           </p>
 
           {/* LOGO GRID */}
@@ -840,7 +861,7 @@ drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
           {/* TITLE */}
           <h2 className="text-4xl font-bold text-center mb-16">
             <span className="bg-gradient-to-r from-emerald-500 to-blue-600 bg-clip-text text-transparent">
-            Keterampilan & Teknologi
+              Keterampilan & Teknologi
             </span>
           </h2>
 
@@ -975,12 +996,12 @@ drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
 
           <h2 className="text-4xl font-bold text-center mb-4">
             <span className="bg-gradient-to-r from-emerald-500 to-blue-600 bg-clip-text text-transparent">
-             Proyek Portofolio
+              Proyek Portofolio
             </span>
           </h2>
 
           <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-           Berikut adalah beberapa proyek yang telah saya buat menggunakan teknologi modern.
+            Berikut adalah beberapa proyek yang telah saya buat menggunakan teknologi modern.
           </p>
 
           {/* FILTER */}
@@ -1082,7 +1103,7 @@ drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
 
           <h2 className="text-4xl font-bold text-center mb-14">
             <span className="bg-gradient-to-r from-emerald-500 to-blue-600 bg-clip-text text-transparent">
-             Apa Kata Klien Kami
+              Apa Kata Klien Kami
             </span>
           </h2>
 
@@ -1140,14 +1161,14 @@ drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
           </h2>
 
           <p className="text-center text-gray-300 mb-12">
-           Tertarik untuk bekerja sama? Saya siap membantu mewujudkan ide-ide digital Anda.
+            Tertarik untuk bekerja sama? Saya siap membantu mewujudkan ide-ide digital Anda.
           </p>
 
           <div className="grid md:grid-cols-2 gap-12">
 
             <div>
               <h3 className="text-2xl font-semibold mb-6">
-              Hubungi Kami
+                Hubungi Kami
               </h3>
 
               <p className="mb-2">📧 forget.noxa90@gmail.com</p>
@@ -1188,6 +1209,30 @@ drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
 
             </div>
 
+
+
+
+            <div ref={mapRef} className="md:col-span-2 w-full">
+
+              <h3 className="text-xl font-semibold mb-4 text-center md:text-left">
+                📍 Alamat Kantor Kami
+              </h3>
+
+              <div className="w-full h-[350px] rounded-xl overflow-hidden border border-white/20 shadow-lg">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.99550508894!2d119.5341459!3d-5.1044221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbefb831617eb09%3A0xb1d71384ca5f90c7!2sforgetz%20studio!5e0!3m2!1sid!2sid!4v1770370754202!5m2!1sid!2sid"
+                  className="w-full h-full border-0"
+                  loading="lazy"
+                  allowFullScreen
+                ></iframe>
+
+              </div>
+
+            </div>
+
+
+
+
           </div>
 
         </div>
@@ -1203,6 +1248,7 @@ drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
             CSS
           </p>
         </div>
+
       </footer>
     </div>
   );
