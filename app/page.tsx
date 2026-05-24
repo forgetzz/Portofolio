@@ -1,1259 +1,658 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import {
-  Github,
-  Linkedin,
-  Mail,
-  ExternalLink,
-  Code,
-  Database,
-  Globe,
-  Smartphone,
-  ChevronDown,
-  Menu,
-  X,
-  Eye,
-  Monitor,
-  LucideIcon,
-} from "lucide-react";
-import { link } from "fs";
-import { useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 
-import { trackEvent } from "@/lib/gtag";
-interface Service {
-  title: string;
-  description: string;
-  price: string;
-  features: string[];
-}
-// Interface untuk project
-interface Project {
+import React, { useEffect, useRef, useState } from "react";
+
+interface EcoItem {
   id: number;
-  title: string;
-  description: string;
-  image: string;
-  technologies: string[];
-  githubUrl: string;
-  liveUrl: string;
-  category: string;
+  label: string;
+  sublabel: string;
+  url: string;
+  icon: string;
+  color: string;
+  glow: string;
+  orbit: 1 | 2 | 3;
+  startDeg: number;
 }
 
-// Interface untuk skill
-interface Skill {
-  name: string;
-  level: number;
-  icon: LucideIcon;
-}
-
-// Interface untuk category
-interface Category {
-  id: string;
-  name: string;
-}
-
-interface Testimonial {
-  name: string;
-  role: string;
-  message: string;
-  rating: number;
-}
-
-const PortfolioLanding: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [activeSection, setActiveSection] = useState<string>("home");
-  const [isVisible, setIsVisible] = useState<Record<string, boolean>>({});
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [showIframe, setShowIframe] = useState<boolean>(false);
-  const mapRef = useRef(null);
-
-  gsap.registerPlugin(ScrollTrigger);
-  useGSAP(() => {
-    gsap.from(mapRef.current, {
-      opacity: 0,
-      y: 60,
-      duration: 1,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: mapRef.current,
-        start: "top 80%",
-      },
-    });
-  });
-
-  // Sample project data - replace with your actual projects
-  const projects: Project[] = [
-
-    {
-      id: 1,
-      title: "ASB family",
-      description:
-        "Full-stack web application built with React, Node.js, and firebase. Complete features including payment gateway and admin dashboard.",
-      image:
-        "/projects/1.png",
-      technologies: ["React", "Node.js", "MongoDB", "Express.js", "Next.js"],
-      githubUrl: "#",
-      liveUrl: "https://play.google.com/store/apps/details?id=com.forgetzz.asbapps&hl=id",
-      category: "mobile",
-    },
-    {
-      id: 2,
-      title: "Asbgo",
-      description:
-        "Mobile application built with React Native (expo). Intuitive UI/UX with transfer, payment, and real-time notification features.",
-      image:
-        "/projects/2.png",
-      technologies: ["React Native", "Firebase", "Expo", "NoSQL"],
-      githubUrl: "#",
-      liveUrl: "https://play.google.com/store/apps/details?id=com.forgetzz.asbgo&hl=id",
-      category: "mobile",
-    },
-    {
-      id: 3,
-      title: "Roket store",
-      description:
-        "Mobile application for buying and selling game chips, featuring secure transactions, user-friendly interface, and real-time order processing.",
-
-      image:
-        "/projects/3.png",
-      technologies: ["Node.js", "React-native(expo)", "firebase", "NoSql"],
-      githubUrl: "#",
-      liveUrl: "https://play.google.com/store/apps/details?id=com.zerogic.RoketStore&hl=id",
-      category: "mobile",
-    },
-    {
-      id: 4,
-      title: "ASB family web (Multilevel marketing)",
-      description:
-        "MLM platform featuring user registration, referral tracking, member dashboard, and network management system.",
-
-      image:
-        "/projects/5.png",
-      technologies: ["next.js", "firebase", "node.js", "express.js", "NoSql"],
-      githubUrl: "#",
-      liveUrl: "https://asbfamilyy.vercel.app/",
-      category: "web",
-    },
-    {
-      id: 5,
-      title: "Big Dipper Machinery Makassar",
-      description:
-        "Company profile website for heavy machinery business, showcasing products, services, and contact information.",
-
-      image:
-        "/projects/11.png",
-      technologies: ["Next.js", "NoSql", "firestore"],
-      githubUrl: "#",
-      liveUrl: "https://loadermakassar.id",
-      category: "web",
-    },
-    {
-      id: 6,
-      title: "Nekoswap (Decentralized Finance Platform)",
-      description:
-        "DeFi application that enables secure, transparent, and automated transactions using smart contracts.",
-      image: "LL.png",
-      technologies: ["React", "Next.js", "Solidity", "TypeScript"],
-      githubUrl: "#",
-      liveUrl: "https://nekoswap.org",
-      category: "web",
-    },
-    {
-      id: 7,
-      title: "Staybarbershop",
-      description:
-        "Barbershop website showcasing services, haircut styles, pricing, and online contact information.",
-
-      image: "/projects/12.png",
-      technologies: ["React", "Next.js", "TypeScript", "TailwindCss"],
-      githubUrl: "#",
-      liveUrl: "https://staybarber.vercel.app",
-      category: "web",
-    },
-    {
-      id: 8,
-      title: "Aspct (Marketplace)",
-      description:
-        "Marketplace platform for buying and selling products with modern interface and user-friendly experience.",
-
-      image: "/projects/9.png",
-      technologies: ["React", "Next.js", "TypeScript", "TailwindCss"],
-      githubUrl: "#",
-      liveUrl: "https://aspct.xyz",
-      category: "web",
-    },
-    {
-      id: 9,
-      title: "Ataya Agung Pratama",
-      description:
-        "Company website for air conditioning service business, showcasing services, company profile, and contact information.",
-      image: "/projects/7.png",
-      technologies: ["React", "Next.js", "TypeScript", "TailwindCss"],
-      githubUrl: "#",
-      liveUrl: "https://www.aapserviceac.com/",
-      category: "web",
-    },
-    {
-      id: 10,
-      title: "Zerogic Token",
-      description:
-        "Cryptocurrency token website providing information about the token, utilities, and ecosystem.",
-
-      image: "/projects/15.png",
-      technologies: ["React", "Next.js", "TypeScript", "TailwindCss"],
-      githubUrl: "#",
-      liveUrl: "https://zerogic.github.io",
-      category: "web",
-    },
-    {
-      id: 11,
-      title: "Klinik Medica",
-      description:
-        "Clinic website providing information about medical services, doctors, and patient contact details.",
-
-      image: "/projects/14.png",
-      technologies: ["React", "Next.js", "TypeScript", "TailwindCss"],
-      githubUrl: "#",
-      liveUrl: "https://klinikmedica.github.io",
-      category: "web",
-    },
-    {
-      id: 12,
-      title: "Barbershop POS Web Application",
-      description:
-        "Point of sale (POS) web application for barbershop with transaction management, services list, and sales reports.",
-      image: "/projects/6.png",
-      technologies: ["React", "Next.js", "TypeScript", "TailwindCss"],
-      githubUrl: "#",
-      liveUrl: "https://barber-apk.vercel.app",
-      category: "web",
-    },
-    {
-      id: 13,
-      title: "Letter Generator Web Application",
-      description:
-        "Web application for generating formal and custom letters automatically.",
-      image: "/projects/13.png",
-      technologies: ["React", "Next.js", "TypeScript", "TailwindCss"],
-      githubUrl: "#",
-      liveUrl: "/",
-      category: "Custom",
-    },
-    {
-      id: 14,
-      title: "APK Store Web Application",
-      description:
-        "Web-based application for browsing and downloading Android applications.",
-      image: "/projects/8.png",
-      technologies: ["React", "Next.js", "TypeScript", "TailwindCss"],
-      githubUrl: "#",
-      liveUrl: "https://forgetzz.vercel.app/",
-      category: "Custom",
-    },
-    {
-      id: 15,
-      title: "Used Motorcycle Marketplace Website",
-      description:
-        "Website for buying and selling used motorcycles with product listings and contact features.",
-      image: "/projects/10.png",
-      technologies: ["React", "Next.js", "TypeScript", "TailwindCss"],
-      githubUrl: "#",
-      liveUrl: "https://forgetzz.vercel.app/",
-      category: "web",
-    },
-    {
-      id: 16,
-      title: "Smart Contract Development",
-      description:
-        "Smart contract development service for blockchain applications including tokens, staking, and decentralized systems.",
-      image: "/projects/16.png",
-      technologies: ["Solidity", "EVM", "Blockchain", "Hardhat", "Web3.js"],
-      githubUrl: "#",
-      liveUrl: "https://polygonscan.com/token/0x4a7db095d7d56de8af219a5ae9c0b3be11f240f5#code",
-      category: "Custom",
-    },
-  ];
-
-
-
-
-  const services: Service[] = [
-    {
-      title: "Company Profile Website",
-      description: "Professional website for business & company profile",
-      price: "$150",
-      features: [
-        "Landing Page",
-        "Mobile Responsive",
-        "Free 1 Month Hosting",
-        "Free Domain for 1 Year",
-      ],
-    },
-    {
-      title: "Web Application",
-      description: "Web-based systems (dashboard, marketplace, etc)",
-      price: "$300",
-      features: [
-        "Login & Registration",
-        "Admin Dashboard",
-        "Database Integration",
-        "API Integration",
-      ],
-    },
-    {
-      title: "Mobile App (Android)",
-      description: "Android application using React Native / Flutter",
-      price: "$450",
-      features: [
-        "Modern UI/UX",
-        "Firebase / Backend",
-        "Push Notifications",
-        "APK Build",
-      ],
-    },
-    {
-      title: "Custom Web & App",
-      description: "Custom website and application development",
-      price: "Starting from $300",
-      features: [
-        "Custom Features",
-        "Modern UI/UX",
-        "Firebase / Backend",
-        "Push Notifications",
-      ],
-    },
-  ];
-
-
-  const skills: Skill[] = [
-    { name: "JavaScript / TypeScript", level: 95, icon: Code },
-    { name: "React / Next.js", level: 90, icon: Globe },
-    { name: "Node.js / Express", level: 85, icon: Database },
-    { name: "Solidity / Smart Contracts", level: 60, icon: Code },
-    { name: "React Native", level: 85, icon: Smartphone },
-    { name: "Database (SQL / NoSQL)", level: 88, icon: Database },
-  ];
-
-  const openProjectPreview = (project: Project): void => {
-    setSelectedProject(project);
-    setShowIframe(true);
-  };
-
-  const closeProjectPreview = (): void => {
-    setShowIframe(false);
-    setSelectedProject(null);
-  };
-
-  const [filter, setFilter] = useState<string>("all");
-  const categories: Category[] = [
-    { id: "all", name: "Semua" },
-    { id: "web", name: "Web App" },
-    { id: "mobile", name: "Mobile" },
-    { id: "Custom", name: "Custom" },
-  ];
-
-  const testimonials: Testimonial[] = [
-    {
-      name: "Drg Fatmawati",
-      role: "Owner Klinik Medica",
-      message:
-        "Website dari ForgetStudio sangat profesional dan cepat. Penjualan saya meningkat drastis.",
-      rating: 5,
-    },
-    {
-      name: "Muh Rafly ",
-      role: "UMKM Parfum",
-      message:
-        "Pelayanan ramah, revisi cepat, hasil sesuai keinginan. Sangat direkomendasikan!",
-      rating: 5,
-    },
-    {
-      name: "PT ASB",
-      role: "Startup Founder",
-      message:
-        "Aplikasi mobile berjalan lancar dan stabil. Tim ForgetStudio sangat komunikatif.",
-      rating: 4,
-    },
-  ];
-
-  const filteredProjects: Project[] =
-    filter === "all"
-      ? projects
-      : projects.filter((project: Project) => project.category === filter);
-  const trustedCompanies = [
-
-    {
-      name: "PT AAP",
-      logo: "/logos/aa.png",
-      link: "https://www.aapserviceac.com/"
-    },
-
-    // {
-    //   name: "Tonasa Company",
-    //   logo: "/logos/tonasa.png",
-    //   link: ""
-    // },
-    {
-      name: "Tonasa Company",
-      logo: "/logos/logoasb.png",
-      link: "https://asbfamilyy.vercel.app/"
-    },
-
-    {
-      name: "PT BDMI",
-      logo: "/logos/bdmi.png",
-      link: "https://loadermakassar.id/"
-    },
-
-    {
-      name: "Klinik Medica",
-      logo: "/logos/medica.png",
-      link: "https://klinikmedica.github.io/"
-    },
-  ];
-
-  useEffect(() => {
-    const handleScroll = (): void => {
-      const sections: string[] = ["home", "about", "skills", "services", "projects", "testimonials", "contact"]
-        ;
-      const scrollPosition: number = window.scrollY + 100;
-
-      sections.forEach((section: string) => {
-        const element = document.getElementById(section);
-        if (element) {
-          const offsetTop: number = element.offsetTop;
-          const height: number = element.offsetHeight;
-
-          if (
-            scrollPosition >= offsetTop &&
-            scrollPosition < offsetTop + height
-          ) {
-            setActiveSection(section);
-          }
-        }
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToSection = (sectionId: string): void => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-    setIsMenuOpen(false);
-  };
-
-  return (
-    <div className="min-h-screen  text-white">
-      {/* Iframe Modal */}
-      {/* {showIframe && selectedProject && (
-        <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
-          <div className="bg-gray-800 rounded-xl w-full max-w-6xl h-5/6 flex flex-col">
-            <div className="flex items-center justify-between p-4 border-b border-gray-700">
-              <div className="flex items-center space-x-4">
-                <Monitor className="text-emerald-400" size={24} />
-                <div>
-                  <h3 className="text-xl font-semibold text-white">
-                    {selectedProject.title}
-                  </h3>
-                  <p className="text-sm text-gray-400">
-                    {selectedProject.liveUrl}
-                  </p>
-                </div>
-              </div>
-              <button
-                onClick={closeProjectPreview}
-                className="text-gray-400 hover:text-white p-2 rounded-lg hover:bg-gray-700 transition-colors"
-              >
-                <X size={24} />
-              </button>
-            </div>
-            <div className="flex-1 p-4">
-              <iframe
-                src={selectedProject.liveUrl}
-                className="w-full h-full rounded-lg border-2 border-gray-700"
-                title={selectedProject.title}
-                sandbox="allow-same-origin allow-scripts allow-forms allow-links"
-                loading="lazy"
-              />
-            </div>
-            <div className="p-4 border-t border-gray-700 flex justify-between items-center">
-              <div className="flex space-x-2">
-                {selectedProject.technologies.map(
-                  (tech: string, index: number) => (
-                    <span
-                      key={index}
-                      className="bg-gray-700 text-emerald-400 px-3 py-1 rounded-full text-xs"
-                    >
-                      {tech}
-                    </span>
-                  )
-                )}
-              </div>
-              <div className="flex space-x-2">
-                <a
-                  href={selectedProject.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors flex items-center space-x-2"
-                >
-                  <Github size={16} />
-                  <span>GitHub</span>
-                </a>
-                <a
-                  href={selectedProject.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-lg transition-colors flex items-center space-x-2"
-                >
-                  <ExternalLink size={16} />
-                  <span>Live Site</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      )} */}
-
-      {/* Navigation */}
-      <nav className="
-fixed top-0 w-full z-50
-bg-gradient-to-r from-slate-900/80 via-indigo-950/80 to-emerald-900/80
-backdrop-blur-md
-border-b border-white/10
-shadow-lg shadow-black/30
-">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex-shrink-0">
-              <h1 className="text-xl font-bold text-white px-3 py-1 rounded-lg
-drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
-                ForgetzStudio
-              </h1>
-
-            </div>
-
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
-                {(
-                  ["home", "about", "skills", "services", "projects", "contact"] as const
-                ).map((item) => (
-                  <button
-                    key={item}
-                    onClick={() => scrollToSection(item)}
-                    className={`px-3 py-2 rounded-md text-sm font-medium capitalize transition-colors ${activeSection === item
-                      ? "bg-emerald-600 text-black"
-                      : "text-white hover:bg-gray-700 hover:text-white"
-                      }`}
-                  >
-                    {item}
-                  </button>
-                ))}
-
-                {/* STORE MENU */}
-                <a
-                  href="/store"
-                  className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-700 hover:text-white transition-colors"
-                >
-                  Store
-                </a>
-
-                {/* LANGUAGE SWITCH */}
-                <div className="flex items-center gap-2 ml-4">
-                  <a
-                    href="/id"
-                    className="px-3 py-1 rounded-md text-sm font-medium border border-gray-400 text-white hover:bg-gray-700 hover:text-white"
-                  >
-                    ID
-                  </a>
-
-                  <a
-                    href="/"
-                    className="px-3 py-1 rounded-md text-sm font-medium border border-gray-400 text-white hover:bg-gray-700 hover:text-white"
-                  >
-                    EN
-                  </a>
-                </div>
-              </div>
-            </div>
-
-
-            <div className="md:hidden">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-gray-400 hover:text-white"
-              >
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-            </div>
-
-          </div>
-        </div>
-
-        {/* Mobile menu */}
-        {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-800">
-              {(
-                ["home", "about", "skills", "projects", "contact"] as const
-              ).map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item)}
-                  className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 rounded-md capitalize w-full text-left"
-                >
-                  {item}
-                </button>
-              ))}
-
-              {/* STORE MENU */}
-              <a
-                href="/store"
-                className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 rounded-md"
-              >
-                Store
-              </a>
-
-              {/* LANGUAGE SWITCH */}
-              <div className="flex gap-2 px-3 pt-4">
-                <a
-                  href="/id"
-                  className="w-full text-center px-3 py-2 rounded-md text-sm font-medium border border-gray-400 text-white hover:bg-gray-700"
-                >
-                  ID
-                </a>
-
-                <a
-                  href="/"
-                  className="w-full text-center px-3 py-2 rounded-md text-sm font-medium border border-gray-400 text-white hover:bg-gray-700"
-                >
-                  EN
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
-
-
-      </nav>
-
-      {/* Hero Section */}
-      <section
-        id="home"
-        className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16"
-      >
-
-        {/* VIDEO BACKGROUND */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          poster="/pos.png"
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/bg.mp4" type="video/mp4" />
-        </video>
-
-        {/* GRADIENT OVERLAY */}
-        <div className="absolute inset-0 
-    bg-gradient-to-br from-black/70 via-slate-900/60 to-emerald-900/60">
-        </div>
-
-        {/* CONTENT */}
-        <div className="max-w-4xl mx-auto text-center px-4 relative z-10">
-
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 
-      text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.25)]">
-            Website & Mobile App <br />
-            <span className="text-emerald-400">
-              Development Services
-            </span>
-          </h1>
-
-          <p className="text-lg md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto">
-            We build professional websites, web applications, and mobile apps
-            to help businesses and startups grow with modern design and high performance.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-
-            <button
-              onClick={() => scrollToSection("services")}
-              className="
-        bg-gradient-to-r from-emerald-500 to-blue-600
-        hover:from-emerald-600 hover:to-blue-700
-        text-white px-8 py-3 rounded-lg font-semibold
-        transition-all transform hover:scale-105
-        shadow-lg shadow-emerald-500/30
-        "
-            >
-              View Services
-            </button>
-
-            <a
-              href="https://wa.me/6289602203266"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-        border border-white/50 text-white
-        hover:bg-white hover:text-black
-        px-8 py-3 rounded-lg font-semibold
-        transition-all
-        "
-            >
-              Contact Us
-            </a>
-
-          </div>
-
-        </div>
-
-        {/* SCROLL ICON */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
-          <ChevronDown size={32} className="text-white/70" />
-        </div>
-
-      </section>
-
-      {/* About Section */}
-      <section
-        id="about"
-        className="py-24 bg-gradient-to-b from-slate-100 to-white"
-      >
-        <div className="max-w-6xl mx-auto px-4">
-
-          {/* TITLE */}
-          <h2 className="text-4xl font-bold text-center mb-16">
-            <span className="bg-gradient-to-r from-emerald-500 to-blue-600 bg-clip-text text-transparent">
-              About Us
-            </span>
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-
-            {/* IMAGE */}
-            <div className="flex justify-center">
-              <div className="
-          p-1 rounded-full 
-          bg-gradient-to-r from-emerald-500 to-blue-600
-        ">
-                <img
-                  src="/log.png"
-                  alt="ForgetzStudio Logo"
-                  className="
-              rounded-full h-72 w-72 object-cover
-              bg-white
-            "
-                />
-              </div>
-            </div>
-
-            {/* CONTENT */}
-            <div className="
-        bg-white rounded-2xl p-8
-        shadow-xl shadow-black/10
-      ">
-
-              <h3 className="text-2xl font-semibold mb-4 text-gray-900">
-                Passionate Full-Stack Developer
-              </h3>
-
-              <p className="text-gray-700 mb-4 leading-relaxed">
-                We are a full-stack developer passionate about creating innovative and
-                impactful technology solutions. With more than 5 years of experience,
-                we have developed various web and mobile applications for multiple industries.
-              </p>
-
-              <p className="text-gray-700 mb-6 leading-relaxed">
-                Our expertise includes frontend development with React & Next.js,
-                backend development with Node.js, mobile development with React Native,
-                and working with databases and cloud technologies.
-              </p>
-
-              {/* SOCIAL */}
-              <div className="flex gap-4">
-                <a
-                  href="#"
-                  className="p-2 rounded-full bg-emerald-500/10 text-emerald-500 hover:bg-emerald-500 hover:text-white transition"
-                >
-                  <Github size={22} />
-                </a>
-
-                <a
-                  href="#"
-                  className="p-2 rounded-full bg-blue-500/10 text-blue-500 hover:bg-blue-500 hover:text-white transition"
-                >
-                  <Linkedin size={22} />
-                </a>
-
-                <a
-                  href="#"
-                  className="p-2 rounded-full bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition"
-                >
-                  <Mail size={22} />
-                </a>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* Trusted Section */}
-      <section
-        id="trusted"
-        className="py-24 bg-gradient-to-b from-white to-slate-100"
-      >
-        <div className="max-w-6xl mx-auto px-4">
-
-          {/* TITLE */}
-          <h2 className="text-4xl font-bold text-center mb-4">
-            <span className="bg-gradient-to-r from-emerald-500 to-blue-600 bg-clip-text text-transparent">
-              Trusted By Companies
-            </span>
-          </h2>
-
-          <p className="text-center text-gray-600 mb-14">
-            Some companies and brands that have worked with Forgetz Studio
-          </p>
-
-          {/* LOGO GRID */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-
-            {trustedCompanies.map((company, index) => (
-              <a
-                key={index}
-                href={company.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="
-          group bg-white/80 backdrop-blur
-          rounded-xl p-6
-          flex items-center justify-center
-          shadow-md shadow-black/10
-          hover:shadow-emerald-500/30
-          transition-all hover:-translate-y-1
-          "
-              >
-                <img
-                  src={company.logo}
-                  alt={company.name}
-                  loading="lazy"
-                  className="
-            h-20 object-contain
-            opacity-70
-            group-hover:grayscale-0
-            group-hover:opacity-100
-            transition
-            "
-                />
-              </a>
-            ))}
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* Skills Section */}
-      {/* Skills Section */}
-      <section
-        id="skills"
-        className="py-24 bg-gradient-to-b from-slate-100 to-white"
-      >
-        <div className="max-w-6xl mx-auto px-4">
-
-          {/* TITLE */}
-          <h2 className="text-4xl font-bold text-center mb-16">
-            <span className="bg-gradient-to-r from-emerald-500 to-blue-600 bg-clip-text text-transparent">
-              Skills & Technologies
-            </span>
-          </h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-            {skills.map((skill: Skill, index: number) => {
-              const IconComponent: LucideIcon = skill.icon;
-              return (
-                <div
-                  key={index}
-                  className="
-            bg-white/80 backdrop-blur
-            p-6 rounded-xl
-            border border-white/40
-            shadow-md shadow-black/10
-            hover:shadow-emerald-500/30
-            transition-all hover:-translate-y-1
-            "
-                >
-
-                  {/* HEADER */}
-                  <div className="flex items-center mb-4">
-                    <IconComponent
-                      size={24}
-                      className="text-emerald-500 mr-3"
-                    />
-                    <h3 className="text-lg font-semibold text-gray-900">
-                      {skill.name}
-                    </h3>
-                  </div>
-
-                  {/* BAR */}
-                  <div className="w-full bg-gray-200 rounded-full h-3 mb-2 overflow-hidden">
-                    <div
-                      className="
-                bg-gradient-to-r from-emerald-500 to-blue-600
-                h-3 rounded-full
-                transition-all duration-700
-                "
-                      style={{ width: `${skill.level}%` }}
-                    ></div>
-                  </div>
-
-                  <span className="text-sm text-gray-600">
-                    {skill.level}%
-                  </span>
-
-                </div>
-              );
-            })}
-
-          </div>
-
-        </div>
-      </section>
-
-      <section
-        id="services"
-        className="py-24 bg-gradient-to-b from-slate-100 to-white"
-      >
-        <div className="max-w-7xl mx-auto px-4">
-
-          <h2 className="text-4xl font-bold text-center mb-14">
-            <span className="bg-gradient-to-r from-emerald-500 to-blue-600 bg-clip-text text-transparent">
-              Our Website & App Development Services
-            </span>
-          </h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-            {services.map((service, index) => (
-              <div
-                key={index}
-                className="
-          bg-white/80 backdrop-blur
-          p-6 rounded-2xl
-          shadow-lg shadow-black/10
-          hover:shadow-emerald-500/30
-          transition-all hover:-translate-y-1
-          "
-              >
-
-                <h3 className="text-xl font-semibold mb-2 text-gray-900">
-                  {service.title}
-                </h3>
-
-                <p className="text-gray-600 mb-4">
-                  {service.description}
-                </p>
-
-                <p className="text-2xl font-bold text-emerald-500 mb-4">
-                  {service.price}
-                </p>
-
-                <ul className="space-y-2 mb-6">
-                  {service.features.map((f, i) => (
-                    <li key={i} className="text-gray-700 text-sm">
-                      ✔ {f}
-                    </li>
-                  ))}
-                </ul>
-
-                <a
-                  href="https://wa.me/6289602203266"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="
-            block text-center
-            bg-gradient-to-r from-emerald-500 to-blue-600
-            hover:from-emerald-600 hover:to-blue-700
-            text-white py-2 rounded-lg font-semibold
-            transition
-            "
-                >
-                  Order Now
-                </a>
-
-              </div>
-            ))}
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* Projects Section */}
-      <section
-        id="projects"
-        className="py-24 bg-gradient-to-b from-white to-slate-100"
-      >
-        <div className="max-w-7xl mx-auto px-4">
-
-          <h2 className="text-4xl font-bold text-center mb-4">
-            <span className="bg-gradient-to-r from-emerald-500 to-blue-600 bg-clip-text text-transparent">
-              Portfolio Projects
-            </span>
-          </h2>
-
-          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            Below are some of the projects I have built using modern technologies.
-          </p>
-
-          {/* FILTER */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {categories.map((category: Category) => (
-              <button
-                key={category.id}
-                onClick={() => setFilter(category.id)}
-                className={`
-          px-4 py-2 rounded-full transition
-          ${filter === category.id
-                    ? "bg-emerald-500 text-white"
-                    : "bg-white shadow text-gray-700 hover:bg-emerald-50"
-                  }
-          `}
-              >
-                {category.name}
-              </button>
-            ))}
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-            {filteredProjects.map((project: Project) => (
-              <div
-                key={project.id}
-                className="
-          bg-white/80 backdrop-blur
-          rounded-2xl overflow-hidden
-          shadow-lg shadow-black/10
-          hover:shadow-emerald-500/30
-          transition-all hover:-translate-y-1
-          group
-          "
-              >
-
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-48 object-cover"
-                />
-
-                <div className="p-6">
-
-                  <h3 className="text-xl font-semibold mb-2 text-gray-900">
-                    {project.title}
-                  </h3>
-
-                  <p className="text-gray-600 mb-4 text-sm">
-                    {project.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech, i) => (
-                      <span
-                        key={i}
-                        className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="flex gap-3">
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      className="text-emerald-500 font-semibold"
-                    >
-                      Live Demo
-                    </a>
-
-                    <a
-                      href={project.githubUrl}
-                      className="text-gray-500"
-                    >
-                      Code
-                    </a>
-                  </div>
-
-                </div>
-
-              </div>
-            ))}
-
-          </div>
-
-        </div>
-      </section>
-
-
-      {/* Services Section */}
-      {/* Testimonials Section */}
-      <section
-        id="testimonials"
-        className="py-24 bg-gradient-to-b from-slate-100 to-white"
-      >
-        <div className="max-w-6xl mx-auto px-4">
-
-          <h2 className="text-4xl font-bold text-center mb-14">
-            <span className="bg-gradient-to-r from-emerald-500 to-blue-600 bg-clip-text text-transparent">
-              What Our Clients Say
-            </span>
-          </h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-            {testimonials.map((item, index) => (
-              <div
-                key={index}
-                className="
-          bg-white/80 backdrop-blur
-          p-6 rounded-xl
-          shadow-lg shadow-black/10
-          hover:shadow-emerald-500/30
-          transition-all hover:-translate-y-1
-          "
-              >
-
-                <div className="flex mb-3">
-                  {[...Array(item.rating)].map((_, i) => (
-                    <span key={i} className="text-yellow-400">★</span>
-                  ))}
-                </div>
-
-                <p className="text-gray-700 italic mb-4">
-                  "{item.message}"
-                </p>
-
-                <h4 className="font-semibold text-gray-900">
-                  {item.name}
-                </h4>
-
-                <p className="text-sm text-gray-500">
-                  {item.role}
-                </p>
-
-              </div>
-            ))}
-
-          </div>
-
-        </div>
-      </section>
-
-
-
-      {/* Contact Section */}
-      <section
-        id="contact"
-        className="py-24 bg-gradient-to-br from-slate-900 via-indigo-950 to-emerald-900 text-white"
-      >
-        <div className="max-w-4xl mx-auto px-4">
-
-          <h2 className="text-4xl font-bold text-center mb-6">
-            Let's Work Together
-          </h2>
-
-          <p className="text-center text-gray-300 mb-12">
-            Interested in working together? I am ready to help turn your digital ideas into reality.
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-12">
-
-            <div>
-              <h3 className="text-2xl font-semibold mb-6">
-                Get In Touch
-              </h3>
-
-              <p className="mb-2">📧 forget.noxa90@gmail.com</p>
-              <p>💻 github.com/forgetzz</p>
-            </div>
-
-            <div className="space-y-4">
-
-              <input
-                placeholder="Nama Anda"
-                className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3"
-              />
-
-              <input
-                placeholder="Email Anda"
-                className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3"
-              />
-
-              <textarea
-                rows={4}
-                placeholder="Pesan Anda"
-                className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 resize-none"
-              ></textarea>
-
-              <a
-                href="https://wa.me/6289602203266"
-                target="_blank"
-                className="
-          block text-center
-          bg-gradient-to-r from-emerald-500 to-blue-600
-          py-3 rounded-lg font-semibold
-          hover:from-emerald-600 hover:to-blue-700
-          transition
-          "
-              >
-                Kirim Pesan
-              </a>
-
-            </div>
-            <div ref={mapRef} className="md:col-span-2 w-full">
-
-              <h3 className="text-xl font-semibold mb-4 text-center md:text-left">
-                📍 Alamat Kantor Kami
-              </h3>
-
-              <div className="w-full h-[350px] rounded-xl overflow-hidden border border-white/20 shadow-lg">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.99550508894!2d119.5341459!3d-5.1044221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbefb831617eb09%3A0xb1d71384ca5f90c7!2sforgetz%20studio!5e0!3m2!1sid!2sid!4v1770370754202!5m2!1sid!2sid"
-                  className="w-full h-full border-0"
-                  loading="lazy"
-                  allowFullScreen
-                ></iframe>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-
-      {/* Footer */}
-      <footer className="bg-gray-800 border-t border-gray-700 py-8">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <p className="text-gray-400">
-            © 2024 ForgetzStudio created with ❤️ using React & Tailwind CSS
-          </p>
-        </div>
-      </footer>
-    </div>
-  );
+const ITEMS: EcoItem[] = [
+  // Orbit 1
+  {
+    id: 1,
+    label: "Learn",
+    sublabel: "Learn with forgetzstudio",
+    url: "https://learn.forgetzstudio.com",
+    icon: "📖",
+    color: "#5de5a0",
+    glow: "rgba(93,229,160,0.35)",
+    orbit: 1,
+    startDeg: 0,
+  },
+  {
+    id: 2,
+    label: "Service",
+    sublabel: "service us",
+    url: "https://forgetzstudio.com/service",
+    icon: "🛠️",
+    color: "#5da0e5",
+    glow: "rgba(93,160,229,0.35)",
+    orbit: 1,
+    startDeg: 180,
+  },
+
+  // Orbit 2
+  {
+    id: 3,
+    label: "Business",
+    sublabel: "Business Center",
+    url: "https://forgetzstudio.com/business",
+    icon: "🤝",
+    color: "#a05de5",
+    glow: "rgba(160,93,229,0.35)",
+    orbit: 2,
+    startDeg: 0,
+  },
+  {
+    id: 4,
+    label: "Shop",
+    sublabel: "forgetzstudio shop",
+    url: "https://shop.forgetzstudio.com",
+    icon: "🛒",
+    color: "#e5a05d",
+    glow: "rgba(229,160,93,0.35)",
+    orbit: 2,
+    startDeg: 120,
+  },
+  {
+    id: 5,
+    label: "Projects",
+    sublabel: "Projects Finish",
+    url: "https://forgetzstudio.com/projects",
+    icon: "</>",
+    color: "#e5645d",
+    glow: "rgba(229,100,93,0.35)",
+    orbit: 2,
+    startDeg: 240,
+  },
+
+  // Orbit 3
+  {
+    id: 6,
+    label: "Ai Platfrom",
+    sublabel: "New Ai",
+    url: "https://ai.forgetzstudio.com",
+    icon: "📦",
+    color: "#5de5dc",
+    glow: "rgba(93,229,220,0.35)",
+    orbit: 3,
+    startDeg: 0,
+  },
+  {
+    id: 7,
+    label: "Blockchain Projects",
+    sublabel: "Cryptocurrency",
+    url: "https://crypto.forgetzstudio.com",
+    icon: "₿",
+    color: "#5de5a0",
+    glow: "rgba(93,229,160,0.35)",
+    orbit: 3,
+    startDeg: 72,
+  },
+  {
+    id: 8,
+    label: "Games",
+    sublabel: "Games forgetzstudio",
+    url: "https:/games.forgetzstudio.com",
+    icon: "🎮",
+    color: "#5da0e5",
+    glow: "rgba(93,160,229,0.35)",
+    orbit: 3,
+    startDeg: 144,
+  },
+  {
+    id: 9,
+    label: "Kontak",
+    sublabel: "WhatsApp Us",
+    url: "https://wa.me/6289602203266",
+    icon: "📞",
+    color: "#5de5a0",
+    glow: "rgba(93,229,160,0.35)",
+    orbit: 3,
+    startDeg: 288,
+  },
+];
+
+const ORBIT_DURATION: Record<1 | 2 | 3, number> = {
+  1: 8000,
+  2: 14000,
+  3: 20000,
 };
 
-export default PortfolioLanding;
+function getOrbitRadius(orbit: 1 | 2 | 3) {
+  if (typeof window === "undefined") {
+    return {
+      1: 120,
+      2: 200,
+      3: 270,
+    }[orbit];
+  }
+
+  const isMobile = window.innerWidth <= 680;
+
+  if (isMobile) {
+    return {
+      1: 75,
+      2: 125,
+      3: 170,
+    }[orbit];
+  }
+
+  return {
+    1: 120,
+    2: 200,
+    3: 270,
+  }[orbit];
+}
+
+function useOrbitAngle(startDeg: number, duration: number) {
+  const [angle, setAngle] = useState(startDeg);
+
+  const raf = useRef<number>(0);
+  const startTime = useRef<number | null>(null);
+
+  useEffect(() => {
+    const tick = (time: number) => {
+      if (!startTime.current) {
+        startTime.current = time - (startDeg / 360) * duration;
+      }
+
+      const elapsed = time - startTime.current;
+
+      setAngle((elapsed / duration) * 360);
+
+      raf.current = requestAnimationFrame(tick);
+    };
+
+    raf.current = requestAnimationFrame(tick);
+
+    return () => cancelAnimationFrame(raf.current);
+  }, [startDeg, duration]);
+
+  return angle;
+}
+
+function OrbitIcon({ item }: { item: EcoItem }) {
+  const angle = useOrbitAngle(
+    item.startDeg,
+    ORBIT_DURATION[item.orbit]
+  );
+
+  const radius = getOrbitRadius(item.orbit);
+
+  const rad = (angle * Math.PI) / 180;
+
+  const x = Math.cos(rad) * radius;
+  const y = Math.sin(rad) * radius;
+
+  const [hovered, setHovered] = useState(false);
+
+  const isMobile =
+    typeof window !== "undefined" &&
+    window.innerWidth <= 680;
+
+  const iconSize = isMobile ? 54 : 76;
+
+  return (
+    <a
+      href={item.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        position: "absolute",
+        left: "50%",
+        top: "50%",
+        transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(${
+          hovered ? 1.15 : 1
+        })`,
+        transition:
+          "transform 0.2s ease, box-shadow 0.2s ease",
+        width: iconSize,
+        height: iconSize,
+        borderRadius: "50%",
+        background:
+          "linear-gradient(135deg, #0d1f18, #091a12)",
+        border: `1.5px solid ${item.color}66`,
+        boxShadow: hovered
+          ? `0 0 28px ${item.glow}`
+          : `0 0 10px ${item.glow}`,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        textDecoration: "none",
+        zIndex: hovered ? 30 : 15,
+        cursor: "pointer",
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      title={item.sublabel}
+    >
+      <span
+        style={{
+          fontSize: isMobile ? 20 : 28,
+          lineHeight: 1,
+        }}
+      >
+        {item.icon}
+      </span>
+
+      <span
+        style={{
+          fontSize: isMobile ? 7 : 9,
+          fontWeight: 500,
+          color: item.color,
+          marginTop: 4,
+          letterSpacing: 0.3,
+          whiteSpace: "nowrap",
+          fontFamily: "inherit",
+        }}
+      >
+        {item.label}
+      </span>
+
+      {hovered && (
+        <div
+          style={{
+            position: "absolute",
+            bottom: isMobile ? 60 : 82,
+            left: "50%",
+            transform: "translateX(-50%)",
+            background: "rgba(8,18,14,0.97)",
+            border: `1px solid ${item.color}55`,
+            borderRadius: 8,
+            padding: "5px 10px",
+            whiteSpace: "nowrap",
+            fontSize: 11,
+            color: item.color,
+            fontFamily: "inherit",
+            pointerEvents: "none",
+            zIndex: 50,
+          }}
+        >
+          {item.sublabel}
+        </div>
+      )}
+    </a>
+  );
+}
+
+function Stars() {
+  const stars = useRef(
+    Array.from({ length: 70 }, (_, i) => ({
+      id: i,
+      top: Math.random() * 100,
+      left: Math.random() * 100,
+      size: Math.random() * 1.8 + 0.6,
+      delay: Math.random() * 4,
+      dur: 2 + Math.random() * 3,
+    }))
+  );
+
+  return (
+    <>
+      {stars.current.map((s) => (
+        <div
+          key={s.id}
+          style={{
+            position: "absolute",
+            top: `${s.top}%`,
+            left: `${s.left}%`,
+            width: s.size,
+            height: s.size,
+            borderRadius: "50%",
+            background: "white",
+            opacity: 0.4,
+            animation: `twinkle ${s.dur}s ${s.delay}s ease-in-out infinite`,
+            pointerEvents: "none",
+          }}
+        />
+      ))}
+    </>
+  );
+}
+
+export default function EcosystemPortal() {
+  return (
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap');
+
+        html,
+        body,
+        #__next {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          background: #060d0a;
+        }
+
+        .portal-root {
+          font-family: 'Syne', sans-serif;
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          background:
+            radial-gradient(
+              ellipse at 40% 40%,
+              #0d1f18 0%,
+              #060d0a 60%
+            ),
+            radial-gradient(
+              ellipse at 80% 80%,
+              #0a0f1e 0%,
+              transparent 60%
+            );
+
+          position: relative;
+          overflow: hidden;
+          padding: 60px 20px;
+        }
+
+        @keyframes twinkle {
+          0%,
+          100% {
+            opacity: 0.15;
+          }
+
+          50% {
+            opacity: 0.65;
+          }
+        }
+
+        @keyframes pulse-out {
+          0% {
+            transform: scale(1);
+            opacity: 0.5;
+          }
+
+          100% {
+            transform: scale(2.8);
+            opacity: 0;
+          }
+        }
+
+        .orbit-container {
+          position: relative;
+          width: 620px;
+          height: 620px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+
+        .center-logo {
+          position: absolute;
+          width: 160px;
+          height: 160px;
+          border-radius: 50%;
+          background:
+            linear-gradient(
+              135deg,
+              #1a3a28,
+              #0d2218
+            );
+
+          border: 2.5px solid rgba(93,229,160,0.5);
+
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          z-index: 20;
+
+          cursor: pointer;
+          text-decoration: none;
+
+          transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+        }
+
+        .center-logo:hover {
+          transform: scale(1.06);
+
+          box-shadow:
+            0 0 50px rgba(93,229,160,0.3);
+        }
+
+        .center-logo img {
+          width: 90px;
+          height: 90px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        .pulse {
+          position: absolute;
+          width: 160px;
+          height: 160px;
+          border-radius: 50%;
+          border: 1px solid rgba(93,229,160,0.4);
+          animation: pulse-out 2.8s ease-out infinite;
+          z-index: 5;
+        }
+
+        .pulse2 {
+          position: absolute;
+          width: 160px;
+          height: 160px;
+          border-radius: 50%;
+          border: 1px solid rgba(93,229,160,0.4);
+          animation: pulse-out 2.8s ease-out 1.4s infinite;
+          z-index: 5;
+        }
+
+        .eyebrow {
+          font-family: 'Space Mono', monospace;
+          font-size: 10px;
+          color: #5de5a0;
+          letter-spacing: 4px;
+          text-transform: uppercase;
+          margin-bottom: 6px;
+        }
+
+        .main-title {
+          font-family: 'Syne', sans-serif;
+          font-size: 36px;
+          font-weight: 800;
+          color: #ffffff;
+          letter-spacing: -1px;
+          margin-bottom: 4px;
+          text-align: center;
+        }
+
+        .main-title span {
+          color: #5de5a0;
+        }
+
+        .tagline {
+          font-family: 'Space Mono', monospace;
+          font-size: 10px;
+          color: rgba(255,255,255,0.3);
+          letter-spacing: 2px;
+          margin-bottom: 36px;
+          text-align: center;
+        }
+
+        .footer-note {
+          font-family: 'Space Mono', monospace;
+          font-size: 9px;
+          color: rgba(255,255,255,0.2);
+          letter-spacing: 1px;
+          margin-top: 28px;
+          text-align: center;
+        }
+
+        .deco-line {
+          position: absolute;
+          width: 1px;
+          height: 60px;
+          background:
+            linear-gradient(
+              to bottom,
+              transparent,
+              rgba(93,229,160,0.3),
+              transparent
+            );
+        }
+
+        @media (max-width: 680px) {
+
+          .portal-root {
+            padding: 30px 10px;
+            overflow-x: hidden;
+          }
+
+          .orbit-container {
+            width: 100vw;
+            height: 100vw;
+            max-width: 380px;
+            max-height: 380px;
+          }
+
+          .main-title {
+            font-size: 24px;
+          }
+
+          .tagline {
+            font-size: 8px;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+          }
+
+          .center-logo {
+            width: 90px;
+            height: 90px;
+          }
+
+          .center-logo img {
+            width: 55px;
+            height: 55px;
+          }
+
+          .pulse,
+          .pulse2 {
+            width: 90px;
+            height: 90px;
+          }
+
+          .footer-note {
+            font-size: 8px;
+            margin-top: 18px;
+          }
+        }
+      `}</style>
+
+      <div className="portal-root">
+        <Stars />
+
+        <div
+          className="deco-line"
+          style={{
+            left: "10%",
+            top: "15%",
+            transform: "rotate(30deg)",
+          }}
+        />
+
+        <div
+          className="deco-line"
+          style={{
+            right: "12%",
+            top: "20%",
+            transform: "rotate(-20deg)",
+          }}
+        />
+
+        <div
+          className="deco-line"
+          style={{
+            left: "20%",
+            bottom: "15%",
+            transform: "rotate(-40deg)",
+          }}
+        />
+
+        <div className="eyebrow">
+          Digital Ecosystem
+        </div>
+
+        <h1 className="main-title">
+          Forgetz<span>Studio</span>
+        </h1>
+
+        <p className="tagline">
+          — web · mobile · blockchain · studio —
+        </p>
+
+        <div className="orbit-container">
+          <div className="pulse" />
+          <div className="pulse2" />
+
+          <a
+            className="center-logo"
+            href="https://forgetzstudio.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="/log.png"
+              alt="ForgetzStudio"
+              onError={(e) => {
+                const t = e.currentTarget;
+
+                t.style.display = "none";
+
+                const fallback =
+                  t.nextElementSibling as HTMLElement;
+
+                if (fallback) {
+                  fallback.style.display = "flex";
+                }
+              }}
+            />
+
+            <div
+              style={{
+                display: "none",
+                width: 90,
+                height: 90,
+                borderRadius: "50%",
+                background: "#1a3a28",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 38,
+              }}
+            >
+              💻
+            </div>
+          </a>
+
+          {ITEMS.map((item) => (
+            <OrbitIcon
+              key={item.id}
+              item={item}
+            />
+          ))}
+        </div>
+
+        <p className="footer-note">
+          tap icon to visit · click logo for main site
+        </p>
+      </div>
+    </>
+  );
+}
