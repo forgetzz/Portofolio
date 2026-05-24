@@ -451,7 +451,7 @@ const PortfolioLanding: React.FC = () => {
   return (
     <div className="min-h-screen  text-white">
       {/* Iframe Modal */}
-      {showIframe && selectedProject && (
+      {/* {showIframe && selectedProject && (
         <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
           <div className="bg-gray-800 rounded-xl w-full max-w-6xl h-5/6 flex flex-col">
             <div className="flex items-center justify-between p-4 border-b border-gray-700">
@@ -518,7 +518,7 @@ const PortfolioLanding: React.FC = () => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
 
       {/* Navigation */}
       <nav className="
