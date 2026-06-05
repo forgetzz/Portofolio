@@ -119,6 +119,17 @@ const ITEMS: EcoItem[] = [
     orbit: 3,
     startDeg: 288,
   },
+  {
+    id: 10,
+    label: "APK STORE",
+    sublabel: "APK STORE",
+    url: "https://forgetzstudio.com/apkStore",
+    icon: "📞",
+    color: "#5de5a0",
+    glow: "rgba(93,229,160,0.35)",
+    orbit: 3,
+    startDeg: 288,
+  },
 ];
 
 const ORBIT_DURATION: Record<1 | 2 | 3, number> = {

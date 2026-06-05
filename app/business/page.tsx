@@ -103,32 +103,6 @@ const BUSINESSES: Business[] = [
     status: "live",
   },
 
-  {
-    id: 4,
-    name: "Anca Sembako",
-
-    tagline:
-      "Digital grocery & daily needs marketplace",
-
-    description:
-      "Online platform for groceries and household essentials with fast ordering, simple checkout system, and local delivery support.",
-
-    icon: "🛍️",
-
-    url: "https://play.google.com/store/apps/details?id=com.forgetzz.asbgo",
-
-    category: "E-Commerce",
-
-    tags: [
-      "Groceries",
-      "Marketplace",
-      "Delivery",
-    ],
-
-    upvotes: 119,
-
-    status: "live",
-  },
 ];
 
 const STATUS_STYLE: Record<string, { bg: string; color: string; label: string }> = {
