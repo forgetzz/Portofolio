@@ -759,14 +759,7 @@ const PortfolioLanding: React.FC = () => {
 
               {/* SOCIAL */}
               <div className="flex gap-3">
-                <a
-                  href="https://github.com/forgetzz"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 border border-[#26262A] text-[#F2F0EA] hover:border-[#FF6A3D] hover:text-[#FF6A3D] transition-colors"
-                >
-                  <Github size={20} />
-                </a>
+              
 
                 <a
                   href="https://instagram.com/forgetzstudio"
@@ -1123,7 +1116,7 @@ const PortfolioLanding: React.FC = () => {
               </h3>
 
               <p className="mb-2 font-mono text-sm text-[#8A8880]">📧 forget.noxa90@gmail.com</p>
-              <p className="font-mono text-sm text-[#8A8880]">💻 github.com/forgetzz</p>
+           
             </div>
 
             <div className="space-y-3">
