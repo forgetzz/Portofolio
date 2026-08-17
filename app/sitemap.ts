@@ -1,19 +1,18 @@
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
+import { SITE } from "@/lib/site-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: "https://forgetzstudio.com",
+      url: SITE.domain,
       lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 1,
     },
-    {
-      url: "https://forgetzstudio.com/store",
+        {
+      url: `${SITE.domain}/store`,
       lastModified: new Date(),
+      priority: 0.7,
     },
-    {
-      url: "https://forgetzstudio.com/id",
-      lastModified: new Date(),
-    }
-  
   ];
 }
